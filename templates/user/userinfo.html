@@ -1,0 +1,380 @@
+{% extends 'user/base.html' %}
+
+{% block title %}
+    个人主页
+{% endblock %}
+
+{% block head %}
+    <script src="{{ url_for('static',filename='js/jquery-3.1.1.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/userInfo.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/order_cart.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/cart.css') }}">
+    <link href="http://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link  href="{{ url_for('static',filename='css/style_img.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static',filename='js/userInfo.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/carts.js') }}"></script>
+{% endblock %}
+
+{% block main %}
+<div class="container">
+
+<div class="user_msg1">
+        <div class="container inner_container">
+            <div>
+                <div class=" my_content">
+                    <div class="tab" role="tabpanel">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#Section1" aria-controls="home" title="账户信息" role="tab" data-toggle="tab"><span><i class=" glyphicon glyphicon-user"></i></span>账户信息</a></li>
+                <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" title="购物车" data-toggle="tab"><span><i class=" glyphicon glyphicon-shopping-cart"></i></span> 购物车</a></li>
+                <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab" title="在售商品" data-toggle="tab"><span><i class=" glyphicon glyphicon-usd"></i></span>在售商品</a></li>
+                <li role="presentation"><a href="#Section4" aria-controls="messages" role="tab" title="我的订单" data-toggle="tab"><span><i class=" glyphicon glyphicon-list-alt"></i></span>我的订单</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content tabs">
+                <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+                   <table class="table my_table">
+                       <form action="#" id="userInfo_form">
+                           <input type="hidden" name="id" class="can_change" value="{{ user.id }}">
+                           <tr>
+                               <td><span class="msg_left">头像</span></td>
+                               <td>
+                                    <div>
+                                        <img id="head_img" src="{{ user.img_url }}" style="display: block">
+                                         <button type="button" class="btn btn-default change_img" data-toggle="modal" data-target="#myModal">更换头像</button>
+                                    </div>
+                               </td>
+                               <td>
+
+                               </td>
+                           </tr>
+
+                             <tr>
+                               <td><span class="msg_left">姓名</span></td>
+                               <td>
+                                   <input type="text" class="form-control can_change" disabled maxlength="20" name="username" value="{{ user.username }}">
+                               </td>
+                           </tr>
+                             <tr class="password">
+                               <td><span class="msg_left"><i class="glyphicon glyphicon-lock" style="color: firebrick"></i>密码</span></td>
+                               <td>
+                                   <input type="text" class="form-control" disabled maxlength="20"  placeholder="密码属于加锁密码，不予与显示,但可以修改">
+                               </td>
+                           </tr>
+                           <tr>
+                               <td><span class="msg_left">联系电话</span></td>
+                               <td>
+                                   <input type="text" class="form-control can_change" disabled name="phone" maxlength="11" value="{{ user.phone }}">
+                               </td>
+                           </tr>
+                           <tr>
+                               <td><span class="msg_left">地址</span></td>
+                               <td>
+                                   <input type="text" class="form-control can_change" disabled maxlength="100" name="addr" value="{{ user.addr }}">
+                               </td>
+                           </tr>
+                            <tr>
+                               <td><span class="msg_left">QQ邮箱</span></td>
+                               <td>
+                                   {{ user.email }}
+                               </td>
+                           </tr>
+                           <tr>
+                               <td><span class="msg_left">状态</span></td>
+                               <td>
+
+                                   {% if user.identity == 1 %}
+                                        <span class="glyphicon glyphicon-king" style="color: red;font-size: 20px"></span>会员
+                                        {% else %}
+                                        <span class="glyphicon glyphicon-pawn" style="color: darkgray;font-size: 20px"></span>普通用户
+                                   {% endif %}
+
+                               </td>
+                           </tr>
+                           <tr>
+                               <td><span class="msg_left">个人积分</span></td>
+                               <td>
+                                  <span>{{ user.scores }}分</span>
+                               </td>
+                           </tr>
+                           <tr>
+                               <td></td>
+                               <td>
+                                   <button type="button" class="btn btn-danger edit_userInfo">修改信息</button>
+                                   <button type="button" class="btn btn-default reset_msg" onclick="window.location.reload()"  style="margin-left: 30px;display: none">还原信息</button>
+                               </td>
+                           </tr>
+                       </form>
+                   </table>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="Section2">
+                      <section class="cartMain">
+        <div class="cartMain_hd">
+            <ul class="order_lists cartTop">
+                <li class="list_chk">
+                    <!--所有商品全选-->
+                    <input type="checkbox" id="all" class="whole_check">
+                    <label for="all"></label>
+                    全选
+                </li>
+                <li class="list_con">商品信息</li>
+                <li class="list_price">单价</li>
+                <li class="list_amount">数量</li>
+                <li class="list_sum">金额</li>
+                <li class="list_op">操作</li>
+            </ul>
+        </div>
+
+        <div class="cartBox">
+            <div class="order_content">
+                {% for shopcart in user.shopcarts %}
+                    <ul class="order_lists">
+                    <li class="list_chk">
+                        <input type="checkbox" id="{{ shopcart.id }}" class="son_check">
+                        <label for="{{ shopcart.id }}"></label>
+                    </li>
+                    <li class="list_con">
+                        <div class="list_img"><a href="javascript:;"><img src="{{ shopcart.product.head_img }}" alt=""></a></div>
+                        <div class="list_text"><a href="{{ url_for('product.detail',id=shopcart.product.id) }}">{{ shopcart.product.pname }}</a></div>
+                    </li>
+
+                    <li class="list_price">
+                        <p class="price">￥{{ shopcart.product.new_price }}</p>
+                    </li>
+                    <li class="list_amount">
+                        <div class="amount_box">
+                            <a href="javascript:;" class="reduce reSty">-</a>
+                            <input type="text" value="{{ shopcart.count }}" class="sum">
+                            <a href="javascript:;" class="plus">+</a>
+                        </div>
+                    </li>
+                    <li class="list_sum">
+                        <p class="sum_price">￥{{ shopcart.subTotal }}</p>
+                    </li>
+                    <li class="list_op">
+                        <p class="del"><a href="javascript:;" class="delBtn" sp_id="{{ shopcart.id }}">移除商品</a></p>
+                    </li>
+                </ul>
+
+                {% endfor %}
+            </div>
+        </div>
+
+        <!--底部-->
+        <div class="bar-wrapper">
+            <div class="delete_all">
+                <a  href="#" class="delBtn">全部删除</a>
+            </div>
+            <div class="bar-right">
+                <div class="piece">已选商品<strong class="piece_num">0</strong>件</div>
+                <div class="totalMoney">共计: <strong class="total_text">0.00</strong></div>
+                <div class="calBtn"><a href="javascript:;">结算</a></div>
+            </div>
+        </div>
+        </section>
+
+      </div>
+
+            <div role="tabpanel" class="tab-pane fade" id="Section3">
+                <table class="table xs_table">
+                    <tr class="tr_head">
+                        <td width="15%">图片</td>
+                        <td width="25%">商品名</td>
+                        <td width="13%">原价</td>
+                        <td width="12%">出售价</td>
+                        <td width="10%">数量</td>
+                        <td width="15%">状态</td>
+                        <td width="10%">操作</td>
+                    </tr>
+                    {% for product in user.products %}
+                        <tr>
+                            <td width="15%"><img src="{{product.head_img}}"></td>
+                            <td width="25%"><a href="{{ url_for('product.detail',id=product.id) }}" target="_blank">{{ product.pname }}</a></td>
+                            <td width="13%">￥{{ product.old_price }}</td>
+                            <td width="12%">￥{{ product.new_price }}</td>
+                            <td width="10%">{{ product.counts }}</td>
+                            <td width="15%">
+                                {% if product.is_pass == 0 %}
+                                    <span class="shing">正在审核</span>
+                                    {% elif product.is_pass == 1%}
+                                    <span class="no_pass">审核未通过</span>
+                                    {% else %}
+                                     <span class="xsing">销售中</span>
+                                {% endif %}
+                            </td>
+                        <td width="10%">
+                            <a href="#" id="{{ product.id }}" class="xj_product">下架</a>
+                        </td>
+                        </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="Section4">
+                <div class="cart my_cart">
+                    <div class="order_page">
+                         {% for order in  user.orders%}
+                         <div class="order_one">
+                            <table>
+                        <tbody>
+                        <tr>
+                            <th colspan="6">
+                                订单状态：
+                                <span>
+                                    {% if order.state == 0 %}
+                                        <div class="order_state">未支付</div>
+                                        {% elif order.state == 1%}
+                                            <div class="order_state">待收货</div>
+                                        {% else %}
+                                            <div class="order_state">交易完成</div>
+                                    {% endif %}
+                                </span>
+                                订单编号：<span class="order_num">{{ order.id }}</span>
+                                下单时间：<span class="order_time">{{ order.ordertime }}</span>
+                                <div class="order_last_time">{{ order.order_last_time }}</div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>图片</th>
+                            <th>商品</th>
+                            <th>价格</th>
+                            <th>数量</th>
+                            <th>小计</th>
+                            <th>操作</th>
+                        </tr>
+                        {% for orderItem in order.orderItems %}
+                            <tr>
+                            <td class="img_order">
+                                <img src="{{ orderItem.product.head_img }}"/>
+                            </td>
+                            <td>
+                                <a target="_blank" href="{{ url_for('product.detail',id=orderItem.product.id) }}">{{ orderItem.product.pname }}</a>
+                            </td>
+                            <td>
+                                ￥{{ orderItem.product.new_price }}
+                            </td>
+                            <td class="quantity">
+                                <input type="hidden" name="count" value="${orderItem.count }" maxlength="4" onpaste="return false;"/>
+                                {{ orderItem.count }}
+                            </td>
+                            <td>
+                                <span class="subtotal">￥{{ orderItem.sub_total }}</span>
+                            </td>
+                            <td>
+                                <a href="{{ url_for('product.deleteOrderItem',id=orderItem.id,flag=1) }}" class="delete">删除</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                            <dl id="giftItems" class="hidden" style="display: none;"></dl>
+                            <div class="total">
+                        <em id="promotion"></em>
+                        商品金额: <strong id="effectivePrice">￥{{ order.total_money }}</strong>
+                            {% if order.state == 2 %}
+                                 <button type="button" class="btn btn-default order_cancel" order_id="{{ order.id }}">删除订单</button>
+                                {% else %}
+                                    <button type="button" class="btn btn-default order_cancel" order_id="{{ order.id }}">取消订单</button>
+                            {% endif %}
+
+                        {% if order.state == 0 %}
+
+                            <button type="button" class="btn btn-success">去支付</button>
+                        {% endif %}
+                    </div>
+                         </div>
+
+               {% endfor %}
+
+                </div>
+                </div>
+            </div>
+     </div>
+            </div>
+            <span class="self_tab" style="display: none">{{ tab }}</span>
+</div>
+</div>
+</div>
+</div>
+
+
+{#    模态框#}
+    <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" style="display: none" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content img_modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">更换头像</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+                                  <div class="imageBox">
+                                    <div class="thumbBox"></div>
+                                    <div class="spinner" style="display: none">点击左下侧按钮选择图像</div>
+                                  </div>
+                                  <div class="action">
+                                    <div class="new-contentarea tc">
+                                        <a href="javascript:void(0)" class="upload-img" title="上传文件">
+                                            <label for="upload-file"><span class="glyphicon glyphicon-folder-open open_file"></span></label>
+                                      </a>
+                                      <input type="file" class="" name="upload-file" id="upload-file" />
+                                    </div>
+                                    <input type="button" id="btnCrop"  class="Btnsty_peyton" value="裁切">
+                                    <input type="button" id="btnZoomIn" class="Btnsty_peyton" value="+"  >
+                                    <input type="button" id="btnZoomOut" class="Btnsty_peyton" value="-" >
+                                  </div>
+                                  <div class="cropped"></div>
+                                </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default close_img" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary use_img">确定使用</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script src="{{ url_for('static',filename='js/jquery-3.1.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/cropbox.js') }}"></script>
+<script type="text/javascript">
+$(function () {
+    var options =
+    {
+        thumbBox: '.thumbBox',
+        spinner: '.spinner',
+        imgSrc: ''
+    }
+    var cropper = $('.imageBox').cropbox(options);
+    $('#upload-file').on('change', function(){
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            options.imgSrc = e.target.result;
+            cropper = $('.imageBox').cropbox(options);
+        }
+        reader.readAsDataURL(this.files[0]);
+        this.files = [];
+    })
+    $('#btnCrop').on('click', function(){
+        var img = cropper.getDataURL();
+
+        $('.cropped').html('');
+        $('.cropped').append('<img src="'+img+'" align="absmiddle" style="width:64px;margin-top:4px;border-radius:64px;box-shadow:0px 0px 12px #7E7E7E;" ><p>64px*64px</p>');
+        $('.cropped').append('<img src="'+img+'" align="absmiddle" style="width:128px;margin-top:4px;border-radius:128px;box-shadow:0px 0px 12px #7E7E7E;"><p>128px*128px</p>');
+        $('.cropped').append('<img src="'+img+'" align="absmiddle" style="width:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;"><p>180px*180px</p>');
+    })
+    $('#btnZoomIn').on('click', function(){
+        cropper.zoomIn();
+    })
+    $('#btnZoomOut').on('click', function(){
+        cropper.zoomOut();
+    })
+})
+</script>
+{% endblock %}

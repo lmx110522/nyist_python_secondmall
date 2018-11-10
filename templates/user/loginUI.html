@@ -1,0 +1,100 @@
+{% extends 'user/base.html' %}
+
+{% block title %}
+    登录
+{% endblock %}
+
+{% block head %}
+     <script src="{{ url_for('static',filename='js/jquery-3.1.1.min.js') }}"></script>
+    <link href="{{ url_for('static',filename='css/login.css') }}" rel="stylesheet" type="text/css"/>
+    <script src="{{ url_for('static',filename='js/loginUI.js') }}"></script>
+{% endblock %}
+
+{% block main %}
+ <div class="container login">
+		<div class="span12">
+            <div class="ad">
+                <img src="{{ url_for('static',filename='image/login.jpg') }}" width="500" height="330" alt="会员登录" title="会员登录">
+            </div>		
+        </div>
+		<div class="span12 last">
+			<div class="wrap">
+				<div class="main">
+					<div class="title">
+						<strong>会员登录</strong>USER LOGIN
+
+					</div>
+					<form id="loginForm" name = "loginForm" action = "{{ url_for('user.login') }}" method="post" novalidate="novalidate" onsubmit="return checkAll()">
+						<table>
+							<tbody>
+                                <tr>
+                                    <th>
+                                        <span class="requiredField">*</span>QQ邮箱:
+                                    </th>
+                                    <td>
+                                        <input type="text" id="username" name="email" oninput="clear_email_msg()" class="text must_input find_password" maxlength="20" >
+                                        <span id = "email_msg"  class="msg"  style="color: firebrick;margin-left:5px">{{ email_msg }}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <span class="requiredField">*</span>密&nbsp;&nbsp;&nbsp;码:
+                                    </th>
+                                    <td>
+                                        <input type="password" id="password" name="password" class="text must_input" maxlength="20" autocomplete="off" >
+                                    </td>
+                                </tr>
+							    <tr>
+                                    <th>
+                                        <span class="requiredField">*</span>验证码:
+                                    </th>
+                                    <td>
+                                        <span class="fieldSet">
+                                            <input type="text" id="changeCode" oninput="clear_code_msg()" name="code" class="text captcha must_input" maxlength="4" autocomplete="off"><img id="captchaImage"  onclick="this.src='{{ url_for('validate_code.get_code') }}?'+ Math.random()" onclass="captchaImage" class="get_pic_code" src="{{ url_for('validate_code.get_code') }}" title="点击更换验证码">
+                                             <span id = "code_msg" class="msg" style="color: firebrick;margin-left:5px">{{ code_msg }}</span>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>&nbsp;
+
+                                    </th>
+                                    <td>
+                                        <label>
+                                            <input type="checkbox" id="isRememberUsername" name="isRememberUsername">记住用户名
+                                        </label>
+                                        <label>
+                                            &nbsp;&nbsp;<a class="reset_password">找回密码</a>
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>&nbsp;
+
+                                    </th>
+                                    <td>
+                                        <input type="submit" class="submit" value="登 录">
+                                    </td>
+                                </tr>
+                                <tr class="register">
+                                    <th>&nbsp;
+
+                                    </th>
+                                    <td>
+                                        <dl>
+                                            <dt>还没有注册账号？</dt>
+                                            <dd>
+                                                立即注册即可体验在线购物！
+                                                <a href="/user/register">立即注册</a>
+                                            </dd>
+                                        </dl>
+                                    </td>
+                                </tr>
+						    </tbody>
+                        </table>
+					</form>
+				</div>
+			</div>
+		</div>
+ </div>
+{% endblock %}

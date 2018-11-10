@@ -1,0 +1,138 @@
+{% extends 'user/base.html'%}
+
+{% block title %}
+ 提交订单
+{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/order_cart.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/common.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/order.css') }}">
+{% endblock %}
+{% block main %}
+    <div class="container cart">
+		<div class="span24">
+                <div class="page-header">
+                  <h3>生成订单成功</h3>
+                </div>
+				<table>
+					<tbody>
+					<tr>
+					    <th colspan="6">
+                            订单编号：<span class="order_num">{{ order.id }}</span>
+                            下单时间：<span class="order_time">{{ order.ordertime }}</span>
+                        </th>
+					</tr>
+					<tr>
+						<th>图片</th>
+						<th>商品</th>
+						<th>价格</th>
+						<th>数量</th>
+						<th>小计</th>
+						<th>操作</th>
+					</tr>
+                    {% for orderItem in order.orderItems %}
+                        <tr>
+                        <td class="img_order">
+                            <img src="{{ orderItem.product.head_img }}"/>
+                        </td>
+                        <td>
+                            <a target="_blank" href="{{ url_for('product.detail',id=orderItem.product.id) }}">{{ orderItem.product.pname }}</a>
+                        </td>
+                        <td>
+                            ￥{{ orderItem.product.new_price }}
+                        </td>
+                        <td class="quantity">
+                            <input type="hidden" name="count" value="${orderItem.count }" maxlength="4" onpaste="return false;"/>
+                            {{ orderItem.count }}
+                        </td>
+                        <td>
+                            <span class="subtotal">￥{{ orderItem.sub_total }}</span>
+                        </td>
+                        <td>
+                            <a href="{{ url_for('product.deleteOrderItem',id=orderItem.id) }}" class="delete">删除</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+				</tbody>
+			</table>
+				<dl id="giftItems" class="hidden" style="display: none;">
+				</dl>
+				<div class="total">
+					<em id="promotion"></em>
+					商品金额: <strong id="effectivePrice">￥{{ order.total_money }}</strong>
+				</div>
+			<form id="orderForm" action="${pageContext.request.contextPath}/order_buy" method="post">
+				<input type="hidden" name="oid" value="${sessionScope.order.oid }"/>
+				<input type="hidden" name="currentPage" value="1"/>
+				<div class="span24">
+					<p class="input_order">
+						<div class="input-group">
+                          <span class="input-group-addon my_addon" id="basic-addon1">收 货 人</span>
+                          <input type="text" class="form-control"  placeholder="Username" aria-describedby="basic-addon1">
+                        </div>
+						<div class="input-group">
+                          <span class="input-group-addon my_addon" id="basic-addon1">联系方式</span>
+                          <input type="text" class="form-control" maxlength="200" placeholder="Username" aria-describedby="basic-addon1">
+                        </div>
+						<div class="input-group">
+                          <span class="input-group-addon my_addon" id="basic-addon1">收货地址</span>
+                          <input type="text" class="form-control" maxlength="200" placeholder="Username" aria-describedby="basic-addon1">
+                        </div>
+					</p>
+
+						<p>
+							选择银行：<br/>
+                            <table class="table table_bank">
+
+                                <tr>
+                                    <td>
+                                        <input type="radio" name="pd_FrpId" value="ICBC-NET-B2C" checked="checked"/>工商银行
+							            <img src="{{ url_for('static',filename='bank_img/icbc.bmp') }}" align="middle"/>&nbsp;
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="pd_FrpId" value="BOC-NET-B2C"/>中国银行
+							            <img src="{{ url_for('static',filename='bank_img/bc.bmp') }}" align="middle"/>
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="pd_FrpId" value="ABC-NET-B2C"/>农业银行
+							            <img src="{{ url_for('static',filename='bank_img/abc.bmp') }}" align="middle"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="radio" name="pd_FrpId" value="BOCO-NET-B2C"/>交通银行
+							            <img src="{{ url_for('static',filename='bank_img/bcc.bmp') }}" align="middle"/>
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="pd_FrpId" value="PINGANBANK-NET"/>平安银行
+							            <img src="{{ url_for('static',filename='bank_img/pingan.bmp') }}" align="middle"/>
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="pd_FrpId" value="CCB-NET-B2C"/>建设银行
+                                        <img src="{{ url_for('static',filename='bank_img/ccb.bmp') }}" align="middle"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="radio" name="pd_FrpId" value="CEB-NET-B2C"/>光大银行
+                                        <img src="{{ url_for('static',filename='bank_img/guangda.bmp') }}" align="middle"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="pd_FrpId" value="CMBCHINA-NET-B2C"/>招商银行
+                                        <img src="{{ url_for('static',filename='bank_img/cmb.bmp') }}" align="middle"/>&nbsp;&nbsp;
+                                    </td>
+                                </tr>
+                            </table>
+						</p>
+
+						<p style="text-align:right">
+							<a href="javascript:document.getElementById('orderForm').submit();">
+								<img src="{{ url_for('static',filename='images/finalbutton.gif') }}" width="204" height="51" border="0" />
+							</a>
+						</p>
+				</div>
+			</form>
+		</div>
+
+	</div>
+{% endblock %}

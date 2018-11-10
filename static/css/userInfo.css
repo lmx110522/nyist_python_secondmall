@@ -1,0 +1,229 @@
+.user_msg1{
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+a:hover,a:focus{
+    outline: none;
+    text-decoration: none;
+}
+.tab{ text-align: center; }
+.tab .nav-tabs{
+    display: inline-block;
+    position: relative;
+    border-bottom: none;
+}
+.tab .nav-tabs li{
+    margin-left: 80px;
+}
+.tab .nav-tabs li a{
+    display: block;
+    padding: 80px 20px 10px;
+    background: #fff;
+    font-size: 17px;
+    font-weight: 700;
+    color: #999;
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 0;
+    border: none;
+    border-bottom: 2px solid #fff;
+    margin-right: 0;
+    overflow: hidden;
+    z-index: 1;
+    position: relative;
+    transition: all 0.3s ease 0s;
+}
+.tab .nav-tabs li a span{
+    display: block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    background: #f2f2f2;
+    margin: auto;
+    font-size: 22px;
+    color: #999;
+    border-radius: 5px;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    transform: rotate(45deg);
+}
+.tab .nav-tabs li.active a span{
+    background: #ab3b3b;
+    color: #fff;
+}
+.tab .nav-tabs li a span i{
+    transform: rotate(-45deg);
+}
+.tab .nav-tabs li.active a,
+.tab .nav-tabs li a:hover{
+    color: #999;
+    border: none;
+    border-bottom: 2px solid #fff;
+}
+.tab .nav-tabs li.active a{
+    border-bottom: 2px solid #ab3b3b;
+}
+.tab .tab-content{
+   padding: 20px;
+    margin-top: -50px;
+    font-size: 15px;
+    color: #757575;
+    line-height: 26px;
+    text-align: left;
+}
+.tab .tab-content h3{
+    font-size: 24px;
+    margin-top: 0;
+}
+@media only screen and (max-width: 479px){
+    .tab .nav-tabs li{
+        width: 100%;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    .tab .nav-tabs li:last-child{
+        margin-bottom: 0;
+    }
+}
+
+
+div.inner_container{
+    width: 100%;
+}
+.row .my_content{
+    width: 100%;
+}
+div.img_modal{
+    width: 680px;
+}
+.open_file{
+    color: white;
+    font-size: 30px;
+    line-height: 50px;
+}
+.my_table{
+    padding: 20px;
+    border-collapse:separate; border-spacing:0px 10px;
+}
+#head_img{
+    width: 128px;
+    border-radius: 128px;
+    height: 128px;
+}
+
+.tabs .my_table tr{
+    margin-right: 20px;
+}
+.tabs .my_table tr td{
+   border-collapse: collapse;
+    border-spacing: 0;
+}
+.tabs .my_table .msg_left{
+    font-weight: bold;
+    font-size: 17px;
+}
+.change_img{
+    margin: 15px 0px 0px -405px;
+}
+table tr td{
+    text-align:center;
+    vertical-align:middle;
+    font-size: 14px;
+}
+.product_name:hover{
+    color: brown;
+    text-decoration: underline;
+}
+table tr:hover{
+    background: #f9f9f9;
+}
+.table:not(.xs_table)>tbody>tr>td{
+    border: none;
+}
+.delete_all a{
+    margin-left: 5px;
+    margin-top: 10px;
+    font-weight: bold !important;
+    font-size: 17px !important;
+    color: #9c2e2e !important;
+    float: left;
+}
+.order_num{
+    color: #cb5368;
+    font-family: -webkit-pictograph;
+    font-weight: bold;
+    font-size: 17px;
+    margin-right: 10px;
+}
+.img_order{
+    width: 90px;
+    height: 90px;
+}
+.img_order img{
+    width: 80% !important;
+    vertical-align: middle;
+}
+.order_button{
+    width: 100%;
+}
+.order_state{
+    display: inline-block;
+    padding: 0px 5px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    color: #d23e3e;
+    font-weight: 600;
+    font-family: sans-serif;
+}
+.order_cancel{
+    margin-right: 10px;
+}
+.null_page{
+    width: 100%;
+    height: 700px;
+    margin-left: 100px !important;
+    background: url(/static/img/null.png) !important;
+}
+.order_last_time{
+    display: inline-block;
+    font-family: fantasy;
+    font-size: 18px;
+    margin-left: 5px;
+}
+table.xs_table img{
+    width: 90px;
+    height: 90px;
+}
+table.xs_table{
+    margin-top: 30px;
+    width: 100%;
+    border: 1px solid #dddddd;
+}
+span.xsing{
+    color: rgba(0, 128, 0, 0.72);
+    font-size: 15px;
+    font-weight: bold;
+}
+span.shing{
+    color: rgba(20, 75, 229, 0.72);
+    font-size: 15px;
+    font-weight: bold;
+}
+span.no_pass{
+    color: rgba(215, 30, 28, 0.72);
+    font-size: 15px;
+    font-weight: bold;
+}
+.my_cart{
+    margin-top: 30px;
+}
+.xs_table a:hover{
+    color: firebrick;
+}
+.xs_table td{
+    padding: 10px !important;
+}

@@ -1,0 +1,339 @@
+
+{% extends 'user/base.html' %}
+{% block title %}
+    首页
+{% endblock %}
+
+{% block head %}
+    <link href="{{ url_for('static',filename='css/index.css') }}" rel="stylesheet" type="text/css"/><!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/ssi-uploader.css') }}">
+    <script type="text/javascript" src="{{ url_for('static',filename='js/index.js') }}"></script>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/partialviewslider.css') }}">
+    <script src="{{ url_for('static',filename='js/login_mt.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style_img.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='img_trans/default.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='img_trans/demo.css',v=2) }}">
+{% endblock %}
+
+{% block main %}
+<div class="container index">
+    <div class="container">
+        <ul id="partial-view">
+            {% for product in extend_products %}
+            <li>
+               <a href="{{ url_for('product.detail',id=product["id"]) }}" target="_blank"><img src="{{ product['images'] }}" title="{{ product['pname'] }}"></a>
+            </li>
+            {% endfor %}
+      </ul>
+
+      <button id="prev" style="display: none">Prev</button>
+      <button id="next" style="display: none">Next</button>
+      <button id="play" style="display: none">Play</button>
+      <button id="pause" style="display: none">Pause</button>
+
+    </div>
+
+   <div class="container">
+    <div class="row">
+        <div>
+            <div class="tab" role="tabpanel">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs my_nav_tab" role="tablist">
+                    <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">买东西</a></li>
+                    <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">卖东西</a></li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content tabs">
+                    <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+                                  <div class="span24" id="buy">
+    <div id="hotProduct" class="hotProduct clearfix">
+    <div class="title">
+        <strong>热门商品</strong>
+        <!-- <a  target="_blank"></a> -->
+    </div>
+    <ul class="tab">
+            <li class="current">
+                <a href="./蔬菜分类.htm?tagIds=1" target="_blank"></a>
+            </li>
+            <li>
+                <a  target="_blank"></a>
+            </li>
+            <li>
+                <a target="_blank"></a>
+            </li>
+    </ul>
+    <ul class="tabContent" style="display: block;">
+                {% for product in hot_products %}
+                     <li>
+                                  <div class="wrapper">
+                                  <div class="item">
+                                  <img src="{{  product.head_img }}" data-original="http://storage.shopxx.net/demo-image/3.0/201301/0ff130db-0a1b-4b8d-a918-ed9016317009-thumbnail.jpg" style="display: block;">
+                                  <span class="information" title="{{ product["pname"] }}">
+                                      <ul class="product_msg">
+                                            <li>数量:仅有<span style="color: firebrick">{{ product["counts"] }}</span>个</li>
+                                            <li>出售价:<span style="color: firebrick">￥{{ product["new_price"] }}</span></li>
+                                            <li>原价:<span style="color: firebrick">￥<del>{{ product["old_price"] }}</del></span></li>
+                                            <li><button type="button" onclick="window.open('{{ url_for('product.detail',id=product.id) }}')" class="btn btn-danger buy" data-toggle="button" aria-pressed="false" autocomplete="off">立刻抢购</button></li>
+                                      </ul>
+
+                                  </span>
+                                  </div>
+                                    </div>
+                                </li>
+                {% endfor %}
+    </ul>
+    </div>
+		</div>
+		<div class="span24">
+			<div id="newProduct" class="newProduct clearfix">
+					<div class="title">
+						<strong>最新商品</strong>
+						<a  target="_blank"></a>
+					</div>
+					<ul class="tab">
+							<li class="current">
+								<a href="./蔬菜分类.htm?tagIds=2" target="_blank"></a>
+							</li>
+							<li>
+								<a  target="_blank"></a>
+							</li>
+							<li>
+								<a target="_blank"></a>
+							</li>
+					</ul>
+						 <ul class="tabContent" style="display: block;">
+                             {% for product in new_products %}
+                                <li>
+                                  <div class="wrapper">
+                                  <div class="item">
+                                  <img src="{{ product.head_img }}" data-original="http://storage.shopxx.net/demo-image/3.0/201301/0ff130db-0a1b-4b8d-a918-ed9016317009-thumbnail.jpg" style="display: block;">
+                                  <span class="information" title="{{ product["pname"] }}">
+                                      <ul class="product_msg">
+                                            <li>数量:仅有<span style="color: firebrick">{{ product["counts"] }}</span>个</li>
+                                            <li>出售价:<span style="color: firebrick">￥{{ product["new_price"] }}</span></li>
+                                            <li>原价:<span style="color: firebrick">￥<del>{{ product["old_price"] }}</del></span></li>
+                                            <li><button type="button" onclick="window.open('{{ url_for('product.detail',id=product.id) }}')" class="btn btn-danger buy" data-toggle="button" aria-pressed="false" autocomplete="off">立刻抢购</button></li>
+                                      </ul>
+
+                                  </span>
+                                  </div>
+                                    </div>
+                                </li>
+                             {% endfor %}
+
+						</ul>
+			</div>
+		</div>
+		<div class="span24">
+			<div class="friendLink">
+				<dl>
+					<dt>新手指南</dt>
+							<dd>
+								<a  target="_blank">支付方式</a>
+								|
+							</dd>
+							<dd>
+								<a  target="_blank">配送方式</a>
+								|
+							</dd>
+							<dd>
+								<a  target="_blank">售后服务</a>
+								|
+							</dd>
+							<dd>
+								<a  target="_blank">购物帮助</a>
+								|
+							</dd>
+							<dd>
+								<a  target="_blank">蔬菜卡</a>
+								|
+							</dd>
+							<dd>
+								<a  target="_blank">礼品卡</a>
+								|
+							</dd>
+							<dd>
+								<a target="_blank">银联卡</a>
+								|
+							</dd>
+							<dd>
+								<a  target="_blank">亿家卡</a>
+								|
+							</dd>
+
+					<dd class="more">
+						<a >更多</a>
+					</dd>
+				</dl>
+			</div>
+		</div>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="Section2">
+
+                    <div class="inner_head">
+                        <img src="{{ url_for('static',filename='img/prd.jpg') }}">
+                        <span class="small_title">
+                            <h3>南阳理工二手交易市场</h3>
+                        </span>
+                    </div>
+                    <div class="inner_body">
+                        <form action="#" id="product_form" method="post" enctype="multipart/form-data">
+                             <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1">商品类别</span>
+                                <div class="dropdown menu_cate">
+                                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="one_cate">一级类别</span>
+                                    <span class="caret"></span>
+                                  </button>
+                                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    {% for category in categorys %}
+                                        <li id="{{ category.id }}" class="one_li"><a href="#">{{ category.cname }}</a></li>
+                                    {% endfor %}
+                                  </ul>
+                                </div>
+                                <div class="dropdown menu_cate">
+                                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                     <span class="two-cate">二级类别</span>
+                                    <span class="caret"></span>
+                                  </button>
+                                    <ul class="dropdown-menu cate_two" aria-labelledby="dropdownMenu1">
+
+                                    </ul>
+
+                                </div>
+                            </div>
+                             <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1">商品名称</span>
+                              <input type="text" maxlength="50" id="pname" class="form-control must_input_product" name="pname" placeholder="商品名称" aria-describedby="basic-addon1">
+                            </div>
+                             <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1">商品描述</span>
+                              <textarea class="form-control must_input_product" id="pDesc" name="pDesc" rows="3" placeholder="说说你的商品吧~"></textarea>
+                            </div>
+                             <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1">商品数量</span>
+                              <input type="number" max="100" maxlength="2" id="counts" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" class="form-control must_input_product" name="counts" placeholder="商品数量" aria-describedby="basic-addon1">
+                            </div>
+                             <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1">商品原价</span>
+                              <input type="number" maxlength="8" id="old_price" onkeyup="value=value.replace(/[^\d.]/g,'')" class="form-control must_input_product" name="old_price" placeholder="商品原价" aria-describedby="basic-addon1">
+                            </div>
+                             <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1">商品售价</span>
+                              <input type="number" maxlength="8" onkeyup="value=value.replace(/[^\d.]/g,'')"  id="new_price" class="form-control must_input_product" name="new_price" placeholder="你出价" aria-describedby="basic-addon1">
+                            </div>
+                             <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1">商品照片</span>
+                                 <div class="htmleaf-container">
+                                    <div class="container">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+
+                                                <input type="file" multiple id="ssi-upload"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                 </div>
+
+                            </div>
+                            <button type="button" class="btn btn-success fb" style="width: 100%;" onclick="checkAll()">发布商品</button>
+                        </form>
+                    </div>
+            <div class="span24">
+			<div class="friendLink">
+				<dl>
+					<dt>新手指南</dt>
+							<dd>
+								<a  target="_blank">支付方式</a>
+								|
+							</dd>
+							<dd>
+								<a  target="_blank">配送方式</a>
+								|
+							</dd>
+							<dd>
+								<a  target="_blank">售后服务</a>
+								|
+							</dd>
+							<dd>
+								<a  target="_blank">购物帮助</a>
+								|
+							</dd>
+							<dd>
+								<a  target="_blank">蔬菜卡</a>
+								|
+							</dd>
+							<dd>
+								<a  target="_blank">礼品卡</a>
+								|
+							</dd>
+							<dd>
+								<a target="_blank">银联卡</a>
+								|
+							</dd>
+							<dd>
+								<a  target="_blank">亿家卡</a>
+								|
+							</dd>
+
+					<dd class="more">
+						<a >更多</a>
+					</dd>
+				</dl>
+			</div>
+		            </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+
+{% include 'user/login_mt.html' %}
+{#    # 小火箭#}
+<div style="display: none;" id="rocket-to-top">
+     <div style="opacity:0;display: block;" class="level-2"></div>
+     <div class="level-3"></div>
+ </div>
+
+
+<div class="modal fade" id="myModal_ads" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content mt_content" >
+        <div class="ad_djs">广告倒计时<span class="djs_time" style="color: firebrick;font-weight: bolder">5</span>秒 <i class="glyphicon glyphicon-remove-circle closeMt"></i></div>
+        <div class="ad_tj">好物推荐</div>
+        <img class="mt_img" title="爆品推荐哟" src="http://pgfgqbd3k.bkt.clouddn.com/6f2e8c40d2a111e8bbbbb808cfd4f089.jpg" style="width: 700px" alt="">
+    </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="{{ url_for('static',filename='js/ssi-uploader.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/partialviewslider.js') }}"></script>
+<script src="{{ url_for('static',filename='img_trans/modernizr.custom.34807.js') }}"></script>
+<script>
+    if(!Modernizr.csstransforms3d) document.getElementById('information').style.display = 'block';
+    $(function () {
+        var partialView = $('#partial-view').partialViewSlider();
+
+		$('#prev').on('click', function(){
+			partialView.prev();
+		});
+		$('#next').on('click', function(){
+			partialView.next();
+		});
+		$('#play').on('click', function(){
+			partialView.play();
+		});
+		$('#pause').on('click', function(){
+			partialView.pause();
+		});
+    })
+    $('#ssi-upload').ssi_uploader({url:'/product/add_imgs',maxFileSize:10,allowed:['jpg','gif','png']});
+
+</script>
+{% endblock %}

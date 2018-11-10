@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}-南工二手交易市场</title>
+    <script src="{{ url_for('static',filename='js/jquery-3.1.1.min.js') }}"></script>
+    <link href="{{ url_for('static',filename='css/base.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ url_for('static',filename='sweetalert/sweetalert.css') }}" rel="stylesheet" type="text/css"/>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link href="{{ url_for('static',filename='css/slider.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ url_for('static',filename='css/common.css') }}" rel="stylesheet" type="text/css"/>
+     <script src="{{ url_for('static',filename='js/base.js') }}" ></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" >
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" ></script>
+    <script src="{{ url_for('static',filename='sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='sweetalert/xlalert.js') }}"></script>
+
+    <link href="{{ url_for('static',filename='circle/font-awesome.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ url_for('static',filename='circle/circle.css') }}" rel="stylesheet" type="text/css"/>
+
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <div class="container header">
+	<div class="span5">
+		<div class="logo">
+			<a href="{{ url_for('index') }}">
+				<img class="logo_nyist" src="{{ url_for('static',filename='images/nyist.png') }}" alt="南工二手交易平台"/>
+			</a>
+		</div>
+	</div>
+	<div class="span9">
+<div class="headerAd">
+	<img src="{{ url_for('static',filename='image/header.jpg') }}" width="320" height="50" alt="正品保障" title="正品保障"/>
+</div>	</div>
+	{% include 'user/menu.html' %}
+</div>
+    {% block main %}{% endblock %}
+    <div class="container footer">
+	<div class="span24">
+		<div class="footerAd">
+            <img src="{{ url_for('static',filename='image/footer.jpg') }}" width="950" height="52" alt="我们的优势" title="我们的优势">
+        </div>
+    </div>
+	<div class="span24">
+		<ul class="bottomNav">
+					<li>
+						<a>关于我们</a>
+						|
+					</li>
+					<li>
+						<a>联系我们</a>
+						|
+					</li>
+					<li>
+						<a>招贤纳士</a>
+						|
+					</li>
+					<li>
+						<a>法律声明</a>
+						|
+					</li>
+					<li>
+						<a>友情链接</a>
+						|
+					</li>
+					<li>
+						<a target="_blank">支付方式</a>
+						|
+					</li>
+					<li>
+						<a target="_blank">配送方式</a>
+						|
+					</li>
+					<li>
+						<a>服务声明</a>
+						|
+					</li>
+					<li>
+						<a>广告声明</a>
+
+					</li>
+		</ul>
+	</div>
+	<div class="span24">
+		<div class="copyright">Copyright © 2018 南工二手交易市场 版权所有</div>
+	</div>
+</div>
+
+{#小火箭#}
+<div style="display: none;" id="rocket-to-top">
+     <div style="opacity:0;display: block;" class="level-2"></div>
+     <div class="level-3"></div>
+</div>
+</body>
+</html>

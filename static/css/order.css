@@ -1,0 +1,44 @@
+.img_order{
+    width: 90px;
+    height: 90px;
+}
+.img_order img{
+    width: 80% !important;
+    vertical-align: middle;
+}
+table tr td, th{
+    text-align: center;
+}
+table tr .order_num{
+    color: #cb5368;
+    font-family: -webkit-pictograph;
+    font-weight: bold;
+    font-size: 17px;
+    margin-right: 10px;
+}
+table tr .order_time{
+
+}
+.span24 .input_order{
+    margin: 0px 30px 0px 30px;
+}
+.span24  div.input-group{
+   margin-top: 20px;
+   margin-bottom: 20px;
+}
+.span24  div.input-group input{
+
+}
+.table_bank tr,td{
+    border: none;
+}
+.my_addon{
+    border: none;
+    border-radius: 20px;
+}
+.table_bank>tbody>tr>td{
+    border: none;
+}
+.table_bank>tbody>tr{
+    border: none;
+}

@@ -1,0 +1,116 @@
+@import url(http://fonts.useso.com/css?family=Graduate|Oleo+Script);
+
+
+
+#container {
+  display: block;
+  margin: 0 auto;
+  width: 1024px;
+}
+  
+  #information {
+    color: red;
+    font-size: 14px;
+  }
+  
+  .wrapper {
+    display: inline-block;
+    width: 170px;
+    height: 170px;
+    vertical-align: top;
+    cursor: pointer;
+    position: relative;
+    font-family: Tahoma, Arial;
+    -webkit-perspective: 4000px;
+       -moz-perspective: 4000px;
+        -ms-perspective: 4000px;
+         -o-perspective: 4000px;
+            perspective: 4000px;
+  }
+  
+  .item {
+    height: 170px;
+    width: 170px;
+      -webkit-transform-style: preserve-3d;
+         -moz-transform-style: preserve-3d;
+          -ms-transform-style: preserve-3d;
+           -o-transform-style: preserve-3d;
+              transform-style: preserve-3d;
+      -webkit-transition: -webkit-transform .6s;
+         -moz-transition: -moz-transform .6s;
+          -ms-transition: -ms-transform .6s;
+           -o-transition: -o-transform .6s;
+              transition: transform .6s;
+  }
+  
+    .item:hover {
+      -webkit-transform: translateZ(-90px) rotateX(95deg);
+         -moz-transform: translateZ(-90px) rotateX(95deg);
+          -ms-transform: translateZ(-90px) rotateX(95deg);
+           -o-transform: translateZ(-90px) rotateX(95deg);
+              transform: translateZ(-90px) rotateX(87.6deg);
+    }
+    
+      .item:hover img {
+        box-shadow: none;
+        border-radius: 15px;
+      }
+      
+      .item:hover .information {
+        box-shadow: 0px 3px 8px rgba(0,0,0,0.3);
+        border-radius: 3px;
+      }
+
+    .item img {
+      display: block;
+      position: absolute;
+      top: 0;
+      border-radius: 3px;
+      box-shadow: 0px 3px 8px rgba(0,0,0,0.3);
+      -webkit-transform: translateZ(50px);
+         -moz-transform: translateZ(50px);
+          -ms-transform: translateZ(50px);
+           -o-transform: translateZ(50px);
+              transform: translateZ(50px);
+      -webkit-transition: all .6s;
+         -moz-transition: all .6s;
+          -ms-transition: all .6s;
+           -o-transition: all .6s;
+              transition: all .6s;
+      
+    }
+    
+    .item .information {
+
+      display: block;
+      position: absolute;
+      top: 0;
+      height: 170px;
+      width: 170px;
+      text-align: left;
+      border-radius: 15px;
+      padding: 10px;
+      font-size: 12px;
+      text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
+      box-shadow: none;
+      background: rgb(236,241,244);
+      background: -moz-linear-gradient(top,  rgba(236,241,244,1) 0%, rgba(190,202,217,1) 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(236,241,244,1)), color-stop(100%,rgba(190,202,217,1)));
+      background: -webkit-linear-gradient(top,  rgba(236,241,244,1) 0%,rgba(190,202,217,1) 100%);
+      background: -o-linear-gradient(top,  rgba(236,241,244,1) 0%,rgba(190,202,217,1) 100%);
+      background: -ms-linear-gradient(top,  rgba(236,241,244,1) 0%,rgba(190,202,217,1) 100%);
+      background: linear-gradient(to bottom,  rgba(236,241,244,1) 0%,rgba(190,202,217,1) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ecf1f4', endColorstr='#becad9',GradientType=0 );
+      -webkit-transform: rotateX(-89.5deg) translateZ(85px);
+         -moz-transform: rotateX(-89.5deg) translateZ(85px);
+          -ms-transform: rotateX(-89.5deg) translateZ(85px);
+           -o-transform: rotateX(-89.5deg) translateZ(85px);
+                  transform: rotateX(-89.5deg) translateZ(85px);
+      -webkit-transition: all .6s;
+         -moz-transition: all .6s;
+          -ms-transition: all .6s;
+           -o-transition: all .6s;
+              transition: all .6s;
+      
+    }
+    

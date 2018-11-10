@@ -1,0 +1,12 @@
+div.header .topNav ul {
+    float: right;
+    margin-bottom: 10px;
+}
+.my_pagination{
+    float: right;
+}
+.null_page{
+    width: 100%;
+    height: 700px;
+    background: url(/static/img/null.png) !important;
+}
