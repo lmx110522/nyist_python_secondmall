@@ -1,7 +1,7 @@
 {% extends 'user/base.html' %}
 
 {% block title %}
-商品详情
+    商品详情
 {% endblock %}
 
 {% block head %}
@@ -17,126 +17,160 @@
 
 {% block main %}
     <div class="container productContent">
-		<div class="span6">
-			<div class="hotProductCategory">
-				{% for category in categorys %}
-						<dl>
-							<dt>
-								<a href="{{ url_for('product.getClassify',cid=category.id) }}">{{ category.cname }}</a>
-							</dt>
-                            {% for categorysecond in category.categoryseconds %}
-                                <dd>
-                                    {% if csid == categorysecond.id %}
-                                        <a href = "{{ url_for('product.getClassify',csid=categorysecond.id) }}" class="categorysecond">{{categorysecond.csname}}</a>
-                                        {% else %}
-                                            <a href = "{{ url_for('product.getClassify',csid=categorysecond.id) }}">{{categorysecond.csname}}</a>
-                                    {% endif %}
-                                </dd>
-                            {% endfor %}
-						</dl>
-				{% endfor %}
-			</div>
+        <div class="span6">
+            <div class="hotProductCategory">
+                {% for category in categorys %}
+                    <dl>
+                        <dt>
+                            <a href="{{ url_for('product.getClassify',cid=category.id) }}">{{ category.cname }}</a>
+                        </dt>
+                        {% for categorysecond in category.categoryseconds %}
+                            <dd>
+                                {% if csid == categorysecond.id %}
+                                    <a href="{{ url_for('product.getClassify',csid=categorysecond.id) }}"
+                                       class="categorysecond">{{ categorysecond.csname }}</a>
+                                {% else %}
+                                    <a href="{{ url_for('product.getClassify',csid=categorysecond.id) }}">{{ categorysecond.csname }}</a>
+                                {% endif %}
+                            </dd>
+                        {% endfor %}
+                    </dl>
+                {% endfor %}
+            </div>
 
-		</div>
-		<div class="span18 last">
+        </div>
+        <div class="span18 last">
 
-			<div class="productImage">
+            <div class="productImage">
 
-					<a title="" style="outline-style: none; text-decoration: none;" id="zoom" href="{{images[0]}}" rel="gallery">
-						<div class="zoomPad"><img style="opacity: 1;" title="" class="medium" src="{{images[0]}}"><div style="display: block; top: 0px; left: 162px; width: 0px; height: 0px; position: absolute; border-width: 1px;" class="zoomPup"></div><div style="position: absolute; z-index: 5001; left: 312px; top: 0px; display: block;" class="zoomWindow"><div style="width: 368px;" class="zoomWrapper"><div style="width: 100%; position: absolute; display: none;" class="zoomWrapperTitle"></div><div style="width: 0%; height: 0px;" class="zoomWrapperImage"><img src="%E5%B0%9A%E9%83%BD%E6%AF%94%E6%8B%89%E5%A5%B3%E8%A3%852013%E5%A4%8F%E8%A3%85%E6%96%B0%E6%AC%BE%E8%95%BE%E4%B8%9D%E8%BF%9E%E8%A1%A3%E8%A3%99%20%E9%9F%A9%E7%89%88%E4%BF%AE%E8%BA%AB%E9%9B%AA%E7%BA%BA%E6%89%93%E5%BA%95%E8%A3%99%E5%AD%90%20%E6%98%A5%E6%AC%BE%20-%20Powered%20By%20Mango%20Team_files/6d53c211-2325-41ed-8696-d8fbceb1c199-large.jpg" style="position: absolute; border: 0px none; display: block; left: -432px; top: 0px;"></div></div></div><div style="visibility: hidden; top: 129.5px; left: 106px; position: absolute;" class="zoomPreload">Loading zoom</div></div>
-					</a>
+                <a title="" style="outline-style: none; text-decoration: none;" id="zoom" href="{{ images[0] }}"
+                   rel="gallery">
+                    <div class="zoomPad"><img style="opacity: 1;" title="" class="medium" src="{{ images[0] }}">
+                        <div style="display: block; top: 0px; left: 162px; width: 0px; height: 0px; position: absolute; border-width: 1px;"
+                             class="zoomPup"></div>
+                        <div style="position: absolute; z-index: 5001; left: 312px; top: 0px; display: block;"
+                             class="zoomWindow">
+                            <div style="width: 368px;" class="zoomWrapper">
+                                <div style="width: 100%; position: absolute; display: none;"
+                                     class="zoomWrapperTitle"></div>
+                                <div style="width: 0%; height: 0px;" class="zoomWrapperImage"><img
+                                        src="%E5%B0%9A%E9%83%BD%E6%AF%94%E6%8B%89%E5%A5%B3%E8%A3%852013%E5%A4%8F%E8%A3%85%E6%96%B0%E6%AC%BE%E8%95%BE%E4%B8%9D%E8%BF%9E%E8%A1%A3%E8%A3%99%20%E9%9F%A9%E7%89%88%E4%BF%AE%E8%BA%AB%E9%9B%AA%E7%BA%BA%E6%89%93%E5%BA%95%E8%A3%99%E5%AD%90%20%E6%98%A5%E6%AC%BE%20-%20Powered%20By%20Mango%20Team_files/6d53c211-2325-41ed-8696-d8fbceb1c199-large.jpg"
+                                        style="position: absolute; border: 0px none; display: block; left: -432px; top: 0px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div style="visibility: hidden; top: 129.5px; left: 106px; position: absolute;"
+                             class="zoomPreload">Loading zoom
+                        </div>
+                    </div>
+                </a>
 
-			</div>
+            </div>
             <span style="display: none" class="no_use_pid">{{ product.id }}</span>
             <span style="display: none" class="no_use_uid">{{ uid }}</span>
-			<div class="name">{{ product.pname }}</div>
+            <div class="name">{{ product.pname }}</div>
 
-			<div class="sn">
-				<div>浏览量：{{ product.click_count }} 次</div>
+            <div class="sn">
+                <div>浏览量：{{ product.click_count }} 次</div>
                 <div>
-                    喜欢：<span class="love_nums" style="color: red">{{ users|length}}</span> 人
-                    {% if  is_love == 1%}
+                    喜欢：<span class="love_nums" style="color: red">{{ users|length }}</span> 人
+                    {% if  is_love == 1 %}
                         <span class="glyphicon glyphicon-heart myLove do_myLove" title="不喜欢"></span>
-                        {% else %}
-                            <span class="glyphicon glyphicon-heart myLove" title="喜欢"></span>
+                    {% else %}
+                        <span class="glyphicon glyphicon-heart myLove" title="喜欢"></span>
                     {% endif %}
                 </div>
-			</div>
-			<div class="info">
-				<dl>
-					<dt>南工价:</dt>
-					<dd>
-						<strong>￥{{ product.new_price }}元</strong>
-							新 品  价：
-							<del>￥{{ product.old_price }}元</del>
-					</dd>
-				</dl>
+            </div>
+            <div class="info">
+                <dl>
+                    <dt>南工价:</dt>
+                    <dd>
+                        <strong>￥{{ product.new_price }}元</strong>
+                        新 品 价：
+                        <del>￥{{ product.old_price }}元</del>
+                    </dd>
+                </dl>
+                {% if product.counts == 0 %}
+                    <dl>
+                        <dt>商品状态:</dt>
+                        <dd>
+                            <a target="_blank" title="已售完">已售完</a>
+                        </dd>
+                    </dl>
+                {% else %}
+                    <dl>
+                        <dt>促销:</dt>
+                        <dd>
+                            <a target="_blank" title="限时抢购 (2018-10-30 ~ 2019-01-01)">限时抢购</a>
+                        </dd>
+                    </dl>
+                {% endif %}
+
+                <dl>
+                    <dt></dt>
+                    <dd>
+                        <span>    </span>
+                    </dd>
+                </dl>
+            </div>
+            <form action="cart_addCart" method="post" id="cartForm">
+                <input type="hidden" name="pid" value="${pPro.pid}"/>
+                <div class="action">
+
+                    <dl class="quantity">
+                        <dt>购买数量:</dt>
+                        <dd>
+                            <input id="count" oninput="checkCount()" onkeyup="this.value=this.value.replace(/\D/g,'')"
+                                   onafterpaste="this.value=this.value.replace(/\D/g,'')" name="count" value="1"
+                                   maxlength="4" onpaste="return false;" type="text">
+                            <div>
+                                <span style="margin-left: 10px">目前此商品数量为<span
+                                        style="color: firebrick;font-weight: bolder">{{ product.counts }}</span></span>
+                            </div>
+                        </dd>
+                    </dl>
                     {% if product.counts == 0 %}
-                        <dl>
-						<dt>商品状态:</dt>
-						<dd>
-								<a target="_blank" title="已售完">已售完</a>
-						</dd>
-					    </dl>
-                        {% else %}
-                        <dl>
-						<dt>促销:</dt>
-						<dd>
-								<a target="_blank" title="限时抢购 (2018-10-30 ~ 2019-01-01)">限时抢购</a>
-						</dd>
-					</dl>
+                        <div class="buy">
+                            <input class="addCart" style="background: lightgrey;text-align: center" value="已售完"
+                                   type="button">
+                        </div>
+                    {% elif product.is_pass != 2 %}
+                        <div class="buy">
+                            <input  class="addCart" value="未上架" style="background: #cccccc;text-align: center;color: #f52222;" type="button">
+                        </div>
+                    {% else %}
+                        <div class="buy">
+                            <input id="addCart" class="addCart" value="加入购物车" type="button">
+                        </div>
                     {% endif %}
-
-					<dl>
-						<dt>    </dt>
-						<dd>
-							<span>    </span>
-						</dd>
-					</dl>
-			</div>
-			<form action="cart_addCart" method="post" id = "cartForm">
-				<input type="hidden" name="pid" value="${pPro.pid}"/>
-				<div class="action">
-
-						<dl class="quantity">
-							<dt>购买数量:</dt>
-							<dd>
-								<input id="count" oninput="checkCount()" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" name="count" value="1" maxlength="4" onpaste="return false;" type="text">
-								<div>
-									<span style="margin-left: 10px">目前此商品数量为<span style="color: firebrick;font-weight: bolder">{{ product.counts }}</span></span>
-								</div>
-							</dd>
-						</dl>
-                      {% if product.counts == 0 %}
-                          <div class="buy">
-                                <input  class="addCart" style="background: lightgrey;text-align: center"  value="已售完" type="button">
-                            </div>
-                        {% else %}
-                          <div class="buy">
-                                <input id="addCart" class="addCart" value="加入购物车" type="button">
-                            </div>
-                        {% endif %}
-				</div>
-				</form>
+                </div>
+            </form>
             <div id="bar" class="bar">
-				<ul>
-
-						<li id="introductionTab">
-							<a href="#introduction">商品描述</a>
-						</li>
-                        <li id="loveTab">
-							<a href="#love">商品议价</a>
-						</li>
-{#						<li id="commnetTab">#}
-{#							<a href="#comment">售出评论</a>#}
-{#						</li>#}
-{#						<li id="recommendTab">#}
-{#							<a href="#recommend">同类型推荐</a>#}
-{#						</li>#}
-				</ul>
-			</div>
-         <div id="introduction" name="introduction" class="introduction detail_all">
-                 <h3>商品描述</h3>
+                <ul>
+                    <li id="introductionTab">
+                        <a href="#introduction">商品描述</a>
+                    </li>
+                    <li id="loveTab">
+                        <a href="#love">商品议价</a>
+                    </li>
+                    <li id="commnetTab">
+                        <a href="#love">给卖家留言</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="show_love_user_area">
+                <span style="color: firebrick;font-size: 15px">喜欢此商品的会员:</span>
+                <ul class="show_love_user">
+                    {% for user in users %}
+                        <li class="{{ user.id }}"><img src="{{ user.img_url }}" title="{{ user.username }}"></li>
+                    {% endfor %}
+                    {% if users|length == 0 %}
+                        <li class="no_like">暂无会员</li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div id="introduction" name="introduction" class="introduction detail_all">
+                <h3>商品描述</h3>
                 <div class="title">
                     <strong> {{ product.pDesc }}</strong>
                 </div>
@@ -148,109 +182,87 @@
 
                 </div>
             </div>
-             <div id="love" name="love" class="love detail_all">
+            <div id="love" name="love" class="love detail_all">
                 <div class="write_comment_area">
                     <h3>商品议价提问</h3>
-                    <textarea class="form-control real_comment" rows="3" placeholder="商议价格还有关于商品的提问在这里发表，语言有不合法或者不符合南工二手交易平台规定，会被删除并且你的账号可能会被查封~"></textarea>
-                    <button type="button" class="btn btn-primary comment_send" data-toggle="button" aria-pressed="false" autocomplete="off">询问</button>
+                    <textarea class="form-control real_comment" rows="3"
+                              placeholder="商议价格还有关于商品的提问在这里发表，语言有不合法或者不符合南工二手交易平台规定，会被删除并且你的账号可能会被查封~"></textarea>
+                    <button type="button" class="btn btn-primary comment_send" data-toggle="button" aria-pressed="false"
+                            autocomplete="off">询问
+                    </button>
                 </div>
                 <span class="no_use_count" style="display: none">{{ product.counts }}</span>
-                 <div class="show_comment_area">
-                      <div class="all_comment">
-                      <ul class="list-group all_comment_in_out ">
-                         {% for comment in comments %}
-                           <li class="list-group-item out_item">
-                             <div class="show_comment_content show_outer">
-                                <img src="{{ comment.user.img_url }}">
-                                <p>
-                                    {{  comment.content }}
-                                </p>
-                                <strong>
-                                    <span>{{  comment.cdate }} {{ comment.user.username }}</span>
-                                    {% if uid == comment.user.id or uid == product.uid %}
-                                        <span class="reply to_del"><a href="#"  my_id="{{ comment.id }}">删除</a></span>
-                                    {% endif %}
-                                    <span><a href="#" class="reply to_relply"  my_id="{{ comment.id }}">回复TA</a></span>
-                                    <span><a href="#" class="reply watch_all_reply"  my_id="{{ comment.id }}">查看全部回复(<b>{{ comment.comments |length }}</b>)</a></span>
-                                </strong>
-                                 <div class="show_all_reply">
+                <div class="show_comment_area">
+                    <div class="all_comment">
+                        <ul class="list-group all_comment_in_out ">
+                            {% for comment in comments %}
+                                <li class="list-group-item out_item">
+                                    <div class="show_comment_content show_outer">
+                                        <img src="{{ comment.user.img_url }}">
+                                        <p>
+                                            {{ comment.content }}
+                                        </p>
+                                        <strong>
+                                            <span>{{ comment.cdate }} {{ comment.user.username }}</span>
+                                            {% if uid == comment.user.id or uid == product.uid %}
+                                                <span class="reply to_del"><a href="#"
+                                                                              my_id="{{ comment.id }}">删除</a></span>
+                                            {% endif %}
+                                            <span><a href="#" class="reply to_relply" my_id="{{ comment.id }}">回复TA</a></span>
+                                            <span><a href="#" class="reply watch_all_reply" my_id="{{ comment.id }}">查看全部回复(<b>{{ comment.comments |length }}</b>)</a></span>
+                                        </strong>
+                                        <div class="show_all_reply">
 
-                                     <ul class=" all_comment_in small_comment">
-                                      {% if comment.comments |length != 0 %}
-                                       {% for comment1 in comment.comments %}
-                                           <li class="list-group-item list-group-inner">
-                                             <div class="show_comment_content">
-                                                <img src="{{ comment1.user.img_url }}">
-                                                <p>
-                                                    {{  comment1.content }}
-                                                </p>
-                                                <strong>
-                                                    <span>{{  comment1.cdate }} {{ comment1.user.username }}</span>
-                                                   {% if uid == comment.uid or uid == product.uid  %}
-                                                    <span class="reply to_del1"><a href="#"  my_id="{{ comment1.id }}">删除</a></span>
-                                                    {% endif %}
-                                                    <span><a href="#" class="reply to_relply"  my_id="{{ comment.id }}">回复TA</a></span>
-                                                </strong>
-                                             </div>
-                                           </li>
-                                       {% endfor %}
+                                            <ul class=" all_comment_in small_comment">
+                                                {% if comment.comments |length != 0 %}
+                                                    {% for comment1 in comment.comments %}
+                                                        <li class="list-group-item list-group-inner">
+                                                            <div class="show_comment_content">
+                                                                <img src="{{ comment1.user.img_url }}">
+                                                                <p>
+                                                                    {{ comment1.content }}
+                                                                </p>
+                                                                <strong>
+                                                                    <span>{{ comment1.cdate }} {{ comment1.user.username }}</span>
+                                                                    {% if uid == comment.uid or uid == product.uid %}
+                                                                        <span class="reply to_del1"><a href="#"
+                                                                                                       my_id="{{ comment1.id }}">删除</a></span>
+                                                                    {% endif %}
+                                                                    <span><a href="#" class="reply to_relply"
+                                                                             my_id="{{ comment.id }}">回复TA</a></span>
+                                                                </strong>
+                                                            </div>
+                                                        </li>
+                                                    {% endfor %}
 
-                                        {% endif %}
-                                      </ul>
+                                                {% endif %}
+                                            </ul>
 
-                                     <textarea class="form-control real_comment1" rows="3" placeholder="回复的语言有不合法或者不符合南工二手交易平台规定，会被删除并且你的账号可能会被查封~"></textarea>
-                                     <button type="button" cid = "{{ comment.id }}" class="btn btn-default comment_send_small" data-toggle="button" aria-pressed="false" autocomplete="off">回复</button>
+                                            <textarea class="form-control real_comment1" rows="3"
+                                                      placeholder="回复的语言有不合法或者不符合南工二手交易平台规定，会被删除并且你的账号可能会被查封~"></textarea>
+                                            <button type="button" cid="{{ comment.id }}"
+                                                    class="btn btn-default comment_send_small" data-toggle="button"
+                                                    aria-pressed="false" autocomplete="off">回复
+                                            </button>
 
-                                 </div>
-                             </div>
-                            </li>
-                          {% endfor %}
-                      </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
                     </div>
 
                 </div>
-                <div class="show_love_user_area">
-                    <span style="color: firebrick;font-size: 15px">喜欢此商品的会员:</span>
-                    <ul class="show_love_user">
-                        {% for user in users %}
-                         <li class="{{ user.id }}"><img src="{{ user.img_url }}" title="{{ user.username }}"></li>
-                        {% endfor %}
-                        {% if users|length == 0 %}
-                            <li class="no_like">暂无会员</li>
-                        {% endif %}
-                    </ul>
-                </div>
+            </div>
+        </div>
+    </div>
 
-             </div>
-
-
-{#            <div id="comment" name="comment" class="comment detail_all">#}
-{#                 <h3>售出评论</h3>#}
-{#                <div class="title">#}
-{#                    <strong> {{ product.pDesc }}</strong>#}
-{#                </div>#}
-{#                <div>#}
-{#                    <img src="/static/{{ product.images }}">#}
-{#                </div>#}
-{#            </div>#}
-{#            <div id="recommend" name="comment" class="comment detail_all">#}
-{#                <h3>同类型推荐</h3>#}
-{#                <div class="title">#}
-{#                    <strong> {{ product.pDesc }}</strong>#}
-{#                </div>#}
-{#                <div>#}
-{#                    <img src="/static/{{ product.images }}">#}
-{#                </div>#}
-{#            </div>#}
-		</div>
-	</div>
-
-<div style="display: none;" id="rocket-to-top">
-     <div style="opacity:0;display: block;" class="level-2"></div>
-     <div class="level-3"></div>
- </div>
+    <div style="display: none;" id="rocket-to-top">
+        <div style="opacity:0;display: block;" class="level-2"></div>
+        <div class="level-3"></div>
+    </div>
 
 
 
-{% include 'user/login_mt.html' %}
+    {% include 'user/login_mt.html' %}
 {% endblock %}

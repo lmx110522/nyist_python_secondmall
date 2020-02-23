@@ -1,13 +1,16 @@
-from flask import Blueprint, views, render_template, request, jsonify, redirect, url_for, session
-import os, base64
+import base64
 import random
-from mail import send_mail
-from redis_cache import redis_cache
-from flask_mail import Message
-from pojo import *
 import uuid
-from app import qiniu_store
+
+from flask import Blueprint, views, render_template, request, jsonify, redirect, url_for, session
+from flask_mail import Message
 from werkzeug.security import generate_password_hash, check_password_hash
+
+from app import qiniu_store
+from config import QINIU_URL
+from mail import send_mail
+from pojo import *
+from redis_cache import redis_cache
 
 user_dp = Blueprint("user", __name__, url_prefix='/user', template_folder="../templates/user")
 
@@ -92,7 +95,7 @@ def sendMail():
         random_sample = ''.join(random_sample)
         redis_cache.set("random_sample", str(random_sample))
         msg = Message(subject="南阳理工学院二手交易平台动态码", recipients=[email])
-        msg.html = "<b><img src='http://pgfgqbd3k.bkt.clouddn.com/loginUI.png' " \
+        msg.html = "<b><img src='http://qiniuyun.donghao.club/nyist.png' " \
                    "style='width:260px'></b><br><b>南阳理工学院二手交易平台注册动态码:" \
                    "<font color='red'>" + random_sample + "</font><b>"
         send_mail.send(msg)
@@ -148,7 +151,7 @@ def changeHeadImage():
     try:
         img_data = base64.b64decode(datas)
         qiniu_store.save(img_data, filename=filename)
-        img_url = qiniu_store.url(filename)
+        img_url = QINIU_URL + filename
         uid = session.get('uid')
         user = User.query.get(uid)
         user.img_url = img_url
@@ -202,7 +205,7 @@ def resetPassword():
             user.password = generate_password_hash(random_sample)
             db.session.commit()
             msg = Message(subject="南阳理工学院二手交易平台找回密码", recipients=[email])
-            msg.html = "<b><img src='http://pgfgqbd3k.bkt.clouddn.com/loginUI.png' " \
+            msg.html = "<b><img src='http://127.0.0.1:5000/static/images/nyist.png" \
                        "style='width:260px'></b><br><b>南阳理工学院二手平台重置你的密码为:" \
                        "<font color='red'>" + random_sample + "</font>,建议登录之后修改密码，谢谢你的使用！<b>"
             send_mail.send(msg)
@@ -224,9 +227,11 @@ def provideOrders():
 
         all_money = float(0)
         for sp_id in sp_ids:
-            if sp_id is not None:
+            if sp_id is not None and len(sp_id) != 0:
                 sp_id = str(sp_id)
                 shopCart = ShopCart.query.get(sp_id)
+                if shopCart is None:
+                    continue
                 if shopCart.pid is None:
                     return redirect(url_for('user.userInfo', tab=2))
                 if shopCart is not None:

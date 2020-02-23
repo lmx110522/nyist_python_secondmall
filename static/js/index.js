@@ -5,7 +5,7 @@
 
         var now_time = new Date();
         now_minutes = now_time.getMinutes();
-        if (now_minutes == 30){
+        if (now_minutes == 22 || now_minutes == 43){
             $("#myModal_ads").modal('show')
             var time = 5
             interval = setInterval(function () {

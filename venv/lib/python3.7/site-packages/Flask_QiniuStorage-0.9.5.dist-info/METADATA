@@ -1,0 +1,25 @@
+Metadata-Version: 2.0
+Name: Flask-QiniuStorage
+Version: 0.9.5
+Summary: Qiniu Storage for Flask
+Home-page: https://github.com/csuzhangxc/Flask-QiniuStorage
+Author: Zhang Xuecheng
+Author-email: csuzhangxc@gmail.com
+License: MIT
+Keywords: qiniu for flask
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: setuptools
+Requires-Dist: Flask
+Requires-Dist: qiniu
+
+Qiniu Storage for Flask. Please visit: https://github.com/csuzhangxc/Flask-QiniuStorage
+
+

@@ -59,7 +59,7 @@ $(window).load(function() {
 
 
     paths: {
-        jquery: '/static/js/jquery-3.1.1.min.js',
+        jquery: '/static/js/jquery-3.1.1.min.js'
         cropbox: 'cropbox'
     }
 

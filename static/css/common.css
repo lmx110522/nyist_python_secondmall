@@ -780,9 +780,6 @@ div.header .headerAd {
 	height: 60px;
 }
 
-div.header .topNav ul {
-	float: right;
-}
 
 div.header .topNav li {
 	line-height: 30px;
@@ -1076,6 +1073,8 @@ div.pagination .pageBreak {
 	font-size: 5px;
 }
 .user_info_detail{
+	box-shadow: 4px 4px 4px #888888;
+	padding: 5px 2px;
 	border-bottom: 1px solid rgba(120, 120, 120, 0.35);
 	z-index: 100;
 	border-radius: 5px;
@@ -1088,11 +1087,10 @@ div.pagination .pageBreak {
 	display: none;
 }
 .user_head{
-
 	width: 78px;
 }
 .u_head{
-
+	float: right;
 	display: inline-block;
 	height: 71px;
     width: 78px;
@@ -1103,7 +1101,7 @@ div.span10 .func_button li{
 	float: none;
 }
 .zuji a:hover{
-	color: firebrick;
+	color: hotpink;
 }
 div.span10 .func_button{
 	margin: 10px 15px 0px 0px
@@ -1130,9 +1128,6 @@ ul.mainNav > li:first-child:hover{
 	color: white;
 	padding: 20px;
 	display: none;
-}
-.all_list_detail .out_ul{
-
 }
 .all_list_detail .out_ul .out_li{
 	color: #5f5b5b;

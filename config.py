@@ -9,9 +9,9 @@ MAX_CONTENT_LENGTH = 16 * 1024 * 1024
 # mysql配置
 DIALECT = "mysql"
 DRIVER = "pymysql"
-USERNAME = "****"
-PASSWORD = "****"
-HOST = "120.79.179.175"
+USERNAME = "root"
+PASSWORD = "123456"
+HOST = "localhost"
 PORT = "3306"
 DATABASE = "new_shop"
 
@@ -27,16 +27,16 @@ MAIL_USE_TLS = True
 MAIL_USE_SSL = False
 MAIL_USERNAME = "1247721306@qq.com"
 MAIL_DEFAULT_SENDER = "1247721306@qq.com"
-MAIL_PASSWORD = "*****************"
+MAIL_PASSWORD = ""
 MAIL_DEBUG = True
 
 # redis配置
-REDIS_HOST = "120.79.179.175"
+REDIS_HOST = "localhost"
 REDIS_PORT = 6379
 
 # 七牛云配置
 ALLOWED_EXT=set(['png', 'jpg','jpeg','bmp','gif'])
-QINIU_ACCESS_KEY = 你的七牛云QINIU_ACCESS_KEY
-QINIU_SECRET_KEY = 你的七牛云QINIU_ACCESS_KEY
-QINIU_BUCKET_NAME = 'lmx110522'
-QINIU_ACCESS_KEY = 你的QINIU_ACCESS_KEY
+QINIU_ACCESS_KEY = ""
+QINIU_SECRET_KEY = ""
+QINIU_BUCKET_NAME = ''
+QINIU_URL = ""

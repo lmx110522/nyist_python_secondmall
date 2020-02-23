@@ -1,14 +1,12 @@
 import base64
-from flask import Blueprint, request, render_template, redirect, url_for, session, jsonify
 import uuid
-from pojo import *
-
-from werkzeug.utils import secure_filename
-import os
-from app import qiniu_store
-from qiniu import put_file
-from extend import *
 from datetime import datetime
+
+from flask import Blueprint, request, render_template, redirect, url_for, session, jsonify
+
+from config import QINIU_URL
+from extend import *
+from pojo import *
 
 product_dp = Blueprint("product", __name__, url_prefix="/product", template_folder="../templates/product")
 
@@ -115,7 +113,7 @@ def add_product():
             img_data = base64.b64decode(data)
             filename = str(uuid.uuid1()).replace("-", "") + ".jpg"
             qiniu_store.save(img_data, filename=filename)
-            img_url = qiniu_store.url(filename)
+            img_url = QINIU_URL + filename
             if i == 0:
                 head_img = img_url
             img_urls += (img_url + "@")
@@ -228,7 +226,7 @@ def change_nums():
         sp_id = request.args.get('sp_id')
         shopCart = ShopCart.query.get(sp_id)
         if shopCart.pid is None:
-            return jsonify({'error':"1"})
+            return jsonify({'error': "1"})
         all_count = shopCart.product.counts + shopCart.count
         if int(nums) > all_count:
             shopCart.count = all_count

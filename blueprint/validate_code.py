@@ -36,7 +36,7 @@ def get_verify_code():
     # 新图片对象
     im = Image.new('RGB', (width, height), 'white')
     # 字体
-    font = ImageFont.truetype('app/static/arial.ttf', 40)
+    font = ImageFont.truetype('../static/Arial Bold.ttf', 40)
     # draw对象
     draw = ImageDraw.Draw(im)
     # 绘制字符串

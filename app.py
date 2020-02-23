@@ -42,7 +42,7 @@ def index():
             productList2.append(product)
         json_dumps = json.dumps(productList2, ensure_ascii=False)
         print(json_dumps)
-        redis_cache.set("productList2", json_dumps)
+        # redis_cache.set("productList2", json_dumps)
     else:
         productList2 = productList2.decode('utf8')
         productList2 = json.loads(productList2)
