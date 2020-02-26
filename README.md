@@ -1,6 +1,6 @@
 ## 看了几天python，想着做一个东西出来，就做出了一个小型*二手* 商城练练手
 ### 新增加管理员审核页面 2020/02/26
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200226122444724.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200226122444724.png)
 
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200226122603190.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70)
