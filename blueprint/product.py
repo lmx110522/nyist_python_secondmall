@@ -1,6 +1,5 @@
 import base64
 import uuid
-from datetime import datetime
 
 from flask import Blueprint, request, render_template, redirect, url_for, session, jsonify
 
@@ -212,6 +211,53 @@ def clearCart(user):
     user.shop_time = None
 
     db.session.commit()
+
+
+@product_dp.route("/find_one")
+def find_one():
+    id = request.args.get('id')
+    products = Product.query.filter(Product.id == id).first()
+    product = Product.product_json1(products)
+    CS = CategorySecond.query.filter(CategorySecond.id == products.csid).first()
+    C = Category.query.filter(Category.id == CS.cid).first()
+    category = Category.category_json(C);
+    categorySecond = CategorySecond.categorySecond_json(CS)
+    return jsonify({"error": '0', "product": product, "category": category, "categorySecond": categorySecond})
+
+    return jsonify({"error": "1"})
+
+
+@product_dp.route("/repeat_check")
+def repeat_check():
+    id = request.args.get('pid')
+    products = Product.query.filter(Product.id == id).first()
+    products.is_pass = 0
+    db.session.commit()
+    return jsonify({"error": '0'})
+
+    return jsonify({"error": "1"})
+
+
+@product_dp.route("/passItem")
+def passItem():
+    id = request.args.get('id')
+    products = Product.query.filter(Product.id == id).first()
+    products.is_pass = 2
+    db.session.commit()
+    return jsonify({"error": '0'})
+
+    return jsonify({"error": "1"})
+
+
+@product_dp.route("/no_pass")
+def no_pass():
+    id = request.args.get('id')
+    products = Product.query.filter(Product.id == id).first()
+    products.is_pass = 1
+    db.session.commit()
+    return jsonify({"error": '0'})
+
+    return jsonify({"error": "1"})
 
 
 @product_dp.route("/change_nums")

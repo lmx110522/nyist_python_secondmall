@@ -50,6 +50,16 @@ def index():
     return render_template('user/index.html', hot_products=productList, new_products=productList1,
                            extend_products=productList2, categorys=category)
 
+@app.route("/admin")
+def adminProducts():
+    products = Product.query.filter(Product.is_pass == 0).order_by(
+        Product.pdate.desc())
+    productList = []
+    for product in products:
+        product = Product.product_json2(product)
+        productList.append(product)
+    return render_template('admin/list.html', productList=productList )
+
 
 @app.context_processor
 def my_context_processor():

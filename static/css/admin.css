@@ -1,0 +1,82 @@
+.ta_01 h2 {
+    color: firebrick;
+    font-size: 30px;
+    font-family: "Microsoft YaHei", "宋体", "Segoe UI", "Lucida Grande", Helvetica, Arial, sans-serif, FreeSans, Arimo;
+}
+
+.ta_01 tr {
+    height: 50px;
+    border: 1px solid #ccc;
+}
+
+.container td > tr > a.open_detail {
+    color: #bd5613;
+    font-weight: bolder;
+}
+
+.container td > tr > a.open_detail:hover {
+    color: firebrick;
+}
+
+.container td {
+    font-weight: bolder;
+    color: black;
+}
+
+div.container {
+    padding: 0px 0px 30px !important;
+}
+
+.modal-content {
+    width: 1000px;
+    margin: 100px -330px 0px;
+}
+
+.inner_body {
+    width: 50%;
+    width: 100%;
+    margin: 50px 50px;
+    padding: 0px 20px 0px 10px;
+}
+
+.btn-success {
+    background: #6d6d6d;
+    color: white;
+    pointer-events: none;
+}
+
+.btn-success:hover {
+    background: firebrick !important;
+}
+
+input#pname {
+    color: firebrick;
+    font-weight: bolder;
+}
+
+textarea#pDesc {
+    color: firebrick;
+    font-weight: bolder;
+}
+
+#do_area {
+    margin: 10px;
+    height: 50px;
+    width: 100%;
+}
+
+#do_area .pass {
+    float: left;
+}
+
+#do_area .btn-danger {
+    float: right;
+}
+
+.null_page {
+    width: 90%;
+    height: 700px;
+    margin-left: 100px !important;
+    background: url(/static/img/null.png) !important;
+    background-repeat: no-repeat;
+}

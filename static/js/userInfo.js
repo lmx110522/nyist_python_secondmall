@@ -181,6 +181,7 @@ $(function () {
         })
 
     })
+
     $(".xj_product").click(function (e) {
         e.preventDefault()
         var $that = $(this)
@@ -197,6 +198,27 @@ $(function () {
                             $('.xs_table').empty()
                             $(".xs_table").addClass('null_page')
                         }
+                    }
+                })
+            }
+        })
+
+    })
+
+    $(".repeat-check").click(function (e) {
+        e.preventDefault()
+        var $that = $(this)
+        pid = $(this).attr('id')
+        zlalert.alertConfirm({
+            "title": "确认重新申请上架商品",
+            "confirmText": "上架",
+            'msg': "确认重新申请上架商品吗？",
+            "confirmCallback": function () {
+                $.getJSON('/product/repeat_check', 'pid=' + pid, function (result) {
+                    if (result.error == 0) {
+                        $that.parents('tr').find(".no_pass").text("审核中...")
+                    } else {
+                        zlalert.alertError("重新申请失败")
                     }
                 })
             }

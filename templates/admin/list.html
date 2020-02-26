@@ -1,0 +1,150 @@
+{% extends 'user/base.html' %}
+
+{% block title %}
+    提交订单
+{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/admin.css') }}">
+    <script src="{{ url_for('static',filename='js/admin.js') }}"></script>
+    <link href="{{ url_for('static',filename='css/index.css') }}" rel="stylesheet" type="text/css"/>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+{% endblock %}
+{% block main %}
+    <div class="container cart">
+        <table cellSpacing="1" cellPadding="0" width="100%" align="center" bgColor="#f5fafe" border="0">
+            <TBODY>
+            <tr>
+                <td class="ta_01" align="center">
+                    <h2>待审核商品列表</h2>
+                </td>
+            </tr>
+            <td class="ta_01" align="center" bgColor="#f5fafe">
+                <table cellspacing="0" cellpadding="1" rules="all"
+                       bordercolor="gray" border="1" id="DataGrid1"
+                       style="BORDER-RIGHT: gray 1px solid; BORDER-TOP: gray 1px solid; BORDER-LEFT: gray 1px solid; WIDTH: 100%; WORD-BREAK: break-all; BORDER-BOTTOM: gray 1px solid; BORDER-COLLAPSE: collapse; BACKGROUND-COLOR: #f5fafe; WORD-WRAP: break-word">
+
+                {% if productList |length > 0 %}
+                        <tr style="FONT-WEIGHT: bold; FONT-SIZE: 12pt; HEIGHT: 25px; BACKGROUND-COLOR: #afd1f3">
+                            <td align="center" width="20%">
+                                申请时间
+                            </td>
+                            <td align="center">
+                                商品名称
+                            </td>
+                            <td width="10%" align="center">
+                                详情
+                            </td>
+                        </tr>
+                        {% for product in productList %}
+                            <tr onmouseover="this.style.backgroundColor = 'white'"
+                                onmouseout="this.style.backgroundColor = '#F5FAFE';">
+                                <td style="CURSOR: hand; HEIGHT: 22px" align="center"
+                                    width="12%">
+                                    {{ product.pdate }}
+                                </td>
+                                <td style="CURSOR: hand; HEIGHT: 22px" align="center">
+                                    {{ product["pname"] }}
+                                </td>
+                                <td style="CURSOR: hand; HEIGHT: 22px" align="center"
+                                    width="10%">
+                                    <a href="#" class="open_detail" id="{{ product.id }}">点我看详情</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <section class="result table clearfix null_page"></section>
+                    {% endif %}
+
+
+                </table>
+            </td>
+            </tr>
+            </TBODY>
+        </table>
+    </div>
+
+    {#    商品详情模态框#}
+    <button type="button" style="display: none;" class="btn btn-primary open_detail_model" data-toggle="modal"
+            data-target=".bs-example-modal-sm">Small modal
+    </button>
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <button type="button" class="close index_close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <div class="inner_body">
+                    <form action="#" id="product_form" method="post" enctype="multipart/form-data">
+                        <div id="do_area">
+                            <button type="button" class="btn btn-lg btn-primary pass">通过</button>
+                            <button type="button" class="btn btn-lg btn-danger nopass">驳回</button>
+                        </div>
+                        <button type="button" class="btn btn-success fb" style="width: 100%;"
+                                onclick="checkAll()">用户提交商品详情
+                        </button>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">商品类别</span>
+                            <div class="dropdown menu_cate">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="one_cate" id="one">男装</span>
+                                    <span class="caret"></span>
+                                </button>
+                            </div>
+                            <div class="dropdown menu_cate">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="two-cate" id="two">西服</span>
+                                    <span class="caret"></span>
+                                </button>
+
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">商品名称</span>
+                            <input type="text" maxlength="50" id="pname" class="form-control must_input_product"
+                                   name="pname" placeholder="商品名称" aria-describedby="basic-addon1" readonly value="1">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">商品描述</span>
+                            <textarea class="form-control must_input_product" id="pDesc" name="pDesc" rows="3"
+                                      placeholder="说说你的商品吧~" readonly>111</textarea>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">商品数量</span>
+                            <input type="number" max="100" maxlength="2" id="counts"
+                                   onkeyup="this.value=this.value.replace(/\D/g,'')"
+                                   onafterpaste="this.value=this.value.replace(/\D/g,'')"
+                                   class="form-control must_input_product" name="counts" placeholder="商品数量"
+                                   aria-describedby="basic-addon1" readonly value="1">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">商品原价</span>
+                            <input type="number" maxlength="8" id="old_price"
+                                   onkeyup="value=value.replace(/[^\d.]/g,'')"
+                                   class="form-control must_input_product" name="old_price" placeholder="商品原价"
+                                   aria-describedby="basic-addon1" readonly>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">商品售价</span>
+                            <input type="number" maxlength="8" onkeyup="value=value.replace(/[^\d.]/g,'')"
+                                   id="new_price" class="form-control must_input_product" name="new_price"
+                                   placeholder="你出价" aria-describedby="basic-addon1" readonly value="22">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">商品照片</span>
+                            <div class="htmleaf-container">
+                                <div class="container" id="product_img">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="copy-right">
+                            <p style="text-align: center">© 2020 南工二手交易平台</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

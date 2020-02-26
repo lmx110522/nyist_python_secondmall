@@ -38,5 +38,5 @@ REDIS_PORT = 6379
 ALLOWED_EXT=set(['png', 'jpg','jpeg','bmp','gif'])
 QINIU_ACCESS_KEY = ""
 QINIU_SECRET_KEY = ""
-QINIU_BUCKET_NAME = ''
+QINIU_BUCKET_NAME = 'download'
 QINIU_URL = ""

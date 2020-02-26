@@ -1,5 +1,6 @@
-from extend import db
 from datetime import datetime
+
+from extend import db
 
 
 # 用户
@@ -43,6 +44,12 @@ class CategorySecond(db.Model):
     cid = db.Column(db.String(50), db.ForeignKey('category.id', ondelete='cascade'))
     category = db.relationship("Category", backref=db.backref('categoryseconds'))
 
+    def categorySecond_json(self):
+        categorySecond_json = {}
+        categorySecond_json["id"] = self.id
+        categorySecond_json["csname"] = self.csname
+        return categorySecond_json
+
 
 # 商品
 
@@ -70,11 +77,31 @@ class Product(db.Model):
 
     def product_json(self):
         product_json = {}
+        # product_json["pdate"] = self.pdate
         product_json["id"] = self.id
         product_json["pname"] = self.pname
         product_json["images"] = self.images.split('@')[0]
         product_json["counts"] = self.counts
         product_json["old_price"] = self.old_price
+        product_json["new_price"] = self.new_price
+        return product_json
+
+    def product_json2(self):
+        product_json = {}
+        product_json["pdate"] = self.pdate
+        product_json["id"] = self.id
+        product_json["pname"] = self.pname
+        return product_json
+
+    def product_json1(self):
+        product_json = {}
+        product_json["id"] = self.id
+        product_json["pname"] = self.pname
+        product_json["images"] = self.images
+        product_json["counts"] = self.counts
+        product_json["old_price"] = self.old_price
+        product_json["new_price"] = self.new_price
+        product_json["pDesc"] = self.pDesc
         product_json["new_price"] = self.new_price
         return product_json
 
