@@ -1,32 +1,33 @@
 ## 看了几天python，想着做一个东西出来，就做出了一个小型*二手* 商城练练手
+csdn 地址 https://blog.csdn.net/over110522/article/details/83933039 可以看到效果图
+
 ### 新增加管理员审核页面 2020/02/26
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200226122444724.png)
 
+https://img-blog.csdnimg.cn/20200226122444724.png
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200226122603190.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70)
+https://img-blog.csdnimg.cn/20200226122603190.png
 ### 1.解释 
 **以下的*二手* 商城展示，商品照片为了好看，从京东上爬下来的，有一些动态效果，我只制作了一张，在线转换成gif的话由于录制屏幕视频文件太大不太容易转格式**
 
 ### 2.用户在没有登录的时候点击买东西，会弹出首先登录，同时也可以选择注册
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181110202812635.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70)
+https://img-blog.csdnimg.cn/20181110202812635.png
 ### 3.卖东西的界面使用了可以拖拽的方式让用户上传商品更方便
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181110202928861.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70)
+https://img-blog.csdnimg.cn/20181110202928861.png
 ### 4.用户添加商品到购物车的界面，由于二手商品数量每件比较少，所以限定用户在提交到购物车20分钟内完成结算，否则商品会从购物车内清除
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181110203102771.gif)
+https://img-blog.csdnimg.cn/20181110203102771.gif
 ### 5.加入购物车之后，用户可以去个人中心查看(顺便展示一下更换照片的界面)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181110203547493.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70)
+https://img-blog.csdnimg.cn/20181110203547493.png
 ### 6. 这个时候商品已经在你的购物车内，你在个人中心也可以看到购物车并且去结算
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181110203756381.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70)
+https://img-blog.csdnimg.cn/20181110203756381.png
 ### 7. 去结算
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181110203830590.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70)
+https://img-blog.csdnimg.cn/20181110203830590.png
 ### 8. 如果用户没有完成结算的话，会在订单中，同样也有时间限制，每件商品都有根据当初进入订单那个时间算起至三十分钟后自动从订单中取消
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181110204036928.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70)
+https://img-blog.csdnimg.cn/20181110204036928.png
 ### 9. 商品列表页面
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181110204127316.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70)
+https://img-blog.csdnimg.cn/20181110204127316.png
 ### 10. 在二手商城中难免有些买家觉着卖家定价不合适，会跟商家交谈，所以我也做了一个商品议价的模块，可以实现回复再回复的问题
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181110204419137.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70)
-
+https://img-blog.csdnimg.cn/20181110204419137.png
 ### 11.我的总结：
 
  1. 上面只是简单的页面展示，具体代码在github上，这个项目中有很多的知识点
