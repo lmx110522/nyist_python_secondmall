@@ -1,5 +1,9 @@
-# 有疑问联系我 qq1247721306,个人博客 www.limaozhan.cn
 ## 看了几天python，想着做一个东西出来，就做出了一个小型*二手* 商城练练手
+### 新增加管理员审核页面 2020/02/26
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200226122444724.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70)
+
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200226122603190.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70)
 ### 1.解释 
 **以下的*二手* 商城展示，商品照片为了好看，从京东上爬下来的，有一些动态效果，我只制作了一张，在线转换成gif的话由于录制屏幕视频文件太大不太容易转格式**
 
@@ -30,5 +34,5 @@
  3. 调bug是一件培养心态的一件事，做web也有二年左右了，感觉从代码中培养了好性格
 
 ### 11.github地址是:https://github.com/lmx110522/nyist_python_secondmall.git
+欢迎访问我的[个人博客](https://www.limaozhan.cn)。
 上面的页面可能不太好看，我是一个写后端代码的小码农却喜欢做前台页面，我去努力进步的！，希望你的支持，谢谢花费时间看我的博客，万分感谢！
-
