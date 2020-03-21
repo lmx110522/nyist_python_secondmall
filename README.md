@@ -1,6 +1,7 @@
 ## 看了几天python，想着做一个东西出来，就做出了一个小型*二手* 商城练练手
 csdn 地址 https://blog.csdn.net/over110522/article/details/83933039 可以看到效果图
 
+### 购物车失效时间计算BUG 已提交最新的代码 2020/03/22
 ### 新增加管理员审核页面 2020/02/26
 
 https://img-blog.csdnimg.cn/20200226122444724.png
