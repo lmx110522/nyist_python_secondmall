@@ -7,6 +7,7 @@ from blueprint.user import user_dp
 from blueprint.validate_code import validate_code
 from mail import send_mail
 import config
+from datetime import datetime,timedelta
 from pojo import *
 from redis_cache import redis_cache
 from blueprint.product import product_dp
@@ -50,6 +51,7 @@ def index():
     return render_template('user/index.html', hot_products=productList, new_products=productList1,
                            extend_products=productList2, categorys=category)
 
+
 @app.route("/admin")
 def adminProducts():
     products = Product.query.filter(Product.is_pass == 0).order_by(
@@ -83,9 +85,10 @@ def my_context_processor():
     if uid is not None:
         user = User.query.get(uid)
         if user.shop_time is not None:
-            result_time = datetime.now() - user.shop_time
-            resultTime = str(result_time).split(':')
-            if int(resultTime[0]) > 0 or int(resultTime[1]) >= 20:
+            shop_time = user.shop_time
+            offset = timedelta(minutes=20)
+            result_time = (shop_time + offset)-datetime.now()
+            if result_time.days < 0:
                 for shopCart in user.shopcarts:
                     product = Product.query.get(shopCart.pid)
                     product.counts = product.counts + shopCart.count
@@ -95,11 +98,8 @@ def my_context_processor():
                 db.session.commit()
                 last_time = ""
             else:
-                second = resultTime[2]
-                index = str(second).find('.')
-                if index != -1:
-                    second = second[0:index]
-                last_time = "" + str(19 - int(resultTime[1])) + ":" + str(60 - int(second))
+                m, s = divmod(result_time.seconds, 60)
+                last_time = "" + str(m) + ":" + str(s)
         length = 0
         for shopCart in user.shopcarts:
             length += shopCart.count
@@ -108,6 +108,7 @@ def my_context_processor():
                 "category_all": category_all, "last_time": last_time, "length": length}
     else:
         return {"categorys": categoryList, "category_all": category_all, "uid": "", "length": "0"}
+
 
 
 # @app.errorhandler(404)

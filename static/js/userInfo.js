@@ -5,7 +5,6 @@ $(function () {
     }
     orderLastTime()
     self_tab = $(".self_tab").text()
-
     if (self_tab != null || self_tab != undefined) {
         $(".nav-tabs li:eq(" + self_tab + ")").addClass('active').siblings().removeClass('active')
         $(".tab-content div.tab-pane:eq(" + self_tab + ")").addClass('active in').siblings().removeClass('active in')
