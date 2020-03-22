@@ -2,7 +2,7 @@ import base64
 import uuid
 
 from flask import Blueprint, request, render_template, redirect, url_for, session, jsonify
-
+from redis_cache import redis_cache
 from config import QINIU_URL
 from extend import *
 from pojo import *
@@ -227,28 +227,35 @@ def find_one():
     return jsonify({"error": "1"})
 
 
+# 下架
 @product_dp.route("/repeat_check")
 def repeat_check():
     id = request.args.get('pid')
     products = Product.query.filter(Product.id == id).first()
     products.is_pass = 0
     db.session.commit()
+    redis_cache.delete("productList");
+    redis_cache.delete("productList1");
     return jsonify({"error": '0'})
 
     return jsonify({"error": "1"})
 
 
+# 通过
 @product_dp.route("/passItem")
 def passItem():
     id = request.args.get('id')
     products = Product.query.filter(Product.id == id).first()
     products.is_pass = 2
     db.session.commit()
+    redis_cache.delete("productList");
+    redis_cache.delete("productList1");
     return jsonify({"error": '0'})
 
     return jsonify({"error": "1"})
 
 
+# 驳回
 @product_dp.route("/no_pass")
 def no_pass():
     id = request.args.get('id')
@@ -256,7 +263,6 @@ def no_pass():
     products.is_pass = 1
     db.session.commit()
     return jsonify({"error": '0'})
-
     return jsonify({"error": "1"})
 
 

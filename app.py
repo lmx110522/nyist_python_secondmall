@@ -29,11 +29,41 @@ with app.app_context():
 
 @app.route('/')
 def index():
-    productList = Product.query.filter(Product.is_sell == 1,Product.is_pass == 2).order_by(Product.click_count.desc()).slice(0, 10)
-    productList1 = Product.query.filter(Product.is_sell == 1,Product.is_pass == 2).order_by(Product.pdate.desc()).slice(0, 10)
+    productList = redis_cache.get('productList')
+    productList1 = redis_cache.get('productList1')
     productList2 = redis_cache.get('productList2')
     category = Category.query.all()
-    # 推广产品
+    # 热门产品
+    if productList is None:
+        products = Product.query.filter(Product.is_sell == 1, Product.is_pass == 2).order_by(
+            Product.click_count.desc()).slice(0, 10)
+        productList = []
+        for product in products:
+            product = Product.product_json(product)
+            productList.append(product)
+        json_dumps = json.dumps(productList, ensure_ascii=False)
+        print(json_dumps)
+        redis_cache.set("productList", json_dumps)
+    else:
+        productList = productList.decode('utf8')
+        productList = json.loads(productList)
+        print(productList)
+    # 新产品
+    if productList1 is None:
+        products = Product.query.filter(Product.is_sell == 1, Product.is_pass == 2).order_by(
+            Product.pdate.desc()).slice(0, 10)
+        productList1 = []
+        for product in products:
+            product = Product.product_json(product)
+            productList1.append(product)
+        json_dumps = json.dumps(productList1, ensure_ascii=False)
+        print(json_dumps)
+        redis_cache.set("productList1", json_dumps)
+    else:
+        productList1 = productList1.decode('utf8')
+        productList1 = json.loads(productList1)
+        print(productList1)
+    # 轮播图商品
     if productList2 is None:
         products = Product.query.filter(Product.is_hot == 2, Product.is_sell == 1, Product.is_pass == 2).order_by(
             Product.pdate.desc()).slice(0, 3)
@@ -43,7 +73,7 @@ def index():
             productList2.append(product)
         json_dumps = json.dumps(productList2, ensure_ascii=False)
         print(json_dumps)
-        # redis_cache.set("productList2", json_dumps)
+        redis_cache.set("productList2", json_dumps)
     else:
         productList2 = productList2.decode('utf8')
         productList2 = json.loads(productList2)
@@ -54,13 +84,19 @@ def index():
 
 @app.route("/admin")
 def adminProducts():
-    products = Product.query.filter(Product.is_pass == 0).order_by(
-        Product.pdate.desc())
-    productList = []
-    for product in products:
-        product = Product.product_json2(product)
-        productList.append(product)
-    return render_template('admin/list.html', productList=productList )
+    uid = session.get("uid")
+    if uid is not None:
+        user = User.query.get(uid)
+        if user.identity == 1:
+            products = Product.query.filter(Product.is_pass == 0).order_by(
+                Product.pdate.desc())
+            productList = []
+            for product in products:
+                product = Product.product_json2(product)
+                productList.append(product)
+            return render_template('admin/list.html', productList=productList)
+
+    return render_template('loginUI.html')
 
 
 @app.context_processor
@@ -110,10 +146,38 @@ def my_context_processor():
         return {"categorys": categoryList, "category_all": category_all, "uid": "", "length": "0"}
 
 
+class Config(object):
+    # 任务列表
+    JOBS = [
+        {  # 每两个小时更新一下热门商品 因为热门商品按照点击率来判定的
+            'id': 'job1',
+            'func': '__main__:hot_product',
+            'args': (),
+            'trigger': 'cron',  # cron表示定时任务
+            'hour': 2
+        }
+    ]
 
-# @app.errorhandler(404)
-# def not_foundPage():
-#     return redirect(url_for('index'))
+
+def hot_product():
+    redis_cache.delete('productList')
+    products = Product.query.filter(Product.is_sell == 1, Product.is_pass == 2).order_by(
+        Product.click_count.desc()).slice(0, 10)
+    productList = []
+    for product in products:
+        product = Product.product_json(product)
+        productList.append(product)
+    json_dumps = json.dumps(productList, ensure_ascii=False)
+    print(json_dumps)
+    redis_cache.set("productList", json_dumps)
+
+
+app.config.from_object(Config())  # 为实例化的flask引入配置
+
+
+@app.errorhandler(404)
+def not_foundPage():
+    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':
