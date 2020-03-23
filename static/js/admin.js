@@ -39,9 +39,14 @@ $(function () {
         $(this).attr("disabled", true);
         $.get("/product/passItem", {"id": id}, function (result) {
             if (result.error == 0) {
-                zlalert.alertSuccess("商品上线成功")
+                zlalert.alertSuccess("商品上线成功", function () {
+                    window.location.reload();
+                })
             } else {
-                zlalert.alertError('出现错误！')
+                zlalert.alertError('出现错误！', function () {
+                    window.location.reload();
+
+                })
             }
         })
     })
@@ -53,9 +58,14 @@ $(function () {
         $(this).attr("disabled", true);
         $.get("/product/no_pass", {"id": id}, function (result) {
             if (result.error == 0) {
-                zlalert.alertSuccess("商品驳回成功")
+                zlalert.alertSuccess("商品驳回成功", function () {
+                    window.location.reload();
+                })
+
             } else {
-                zlalert.alertError('出现错误！')
+                zlalert.alertError('出现错误！', function () {
+                    window.location.reload();
+                })
             }
         })
     })

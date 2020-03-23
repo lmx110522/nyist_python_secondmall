@@ -5,7 +5,7 @@
 
         var now_time = new Date();
         now_minutes = now_time.getMinutes();
-        if (now_minutes == 22 || now_minutes == 43){
+        if (now_minutes == 22 || now_minutes == 53){
             $("#myModal_ads").modal('show')
             var time = 5
             interval = setInterval(function () {
@@ -70,7 +70,7 @@
              $(".two-cate").attr('csid',$(this).attr('id'))
          })
         $(".mt_img").click(function () {
-            window.open("/product/detail?id=6fc83e6ed2a111e88cf7b808cfd4f089")
+            window.open("/product/detail?id=f08252166c4411ea9a1cacde48001122")
         })
  })
 
