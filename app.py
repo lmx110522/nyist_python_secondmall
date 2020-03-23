@@ -175,9 +175,9 @@ def hot_product():
 app.config.from_object(Config())  # 为实例化的flask引入配置
 
 
-# @app.errorhandler(404)
-# def not_foundPage(error):
-#     return redirect(url_for('index'))
+@app.errorhandler(404)
+def not_foundPage(error):
+    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':
