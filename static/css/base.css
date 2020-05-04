@@ -1,8 +1,28 @@
-*{
+* {
     margin: 0px;
     padding: 0px;
 }
-a{
+
+a {
     color: #666666;
     text-decoration: none;
+}
+
+body {
+    background: #F4F4F4 !important;
+}
+
+.main_show {
+    background: #FFFFFF;
+    width: 60% !important;
+    height: 90%;
+    margin: 0px auto;
+    *zoom: 1;
+    color: #666666;
+    text-decoration: none;
+    font: 12px tahoma, Arial, Verdana, sans-serif;
+}
+
+.footer {
+    background: #FFFFFF !important;
 }

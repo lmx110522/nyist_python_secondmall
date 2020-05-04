@@ -1,13 +1,13 @@
-import math
-
 from flask import Flask, render_template, session, redirect, url_for, request
+from apscheduler.schedulers.background import BackgroundScheduler
 from extend import db, qiniu_store
 import json
+from datetime import timedelta
 from blueprint.user import user_dp
 from blueprint.validate_code import validate_code
 from mail import send_mail
 import config
-from datetime import datetime,timedelta
+import datetime
 from pojo import *
 from redis_cache import redis_cache
 from blueprint.product import product_dp
@@ -25,7 +25,6 @@ send_mail.init_app(app)
 
 with app.app_context():
     db.create_all()
-
 
 @app.route('/')
 def index():
@@ -123,7 +122,7 @@ def my_context_processor():
         if user.shop_time is not None:
             shop_time = user.shop_time
             offset = timedelta(minutes=20)
-            result_time = (shop_time + offset)-datetime.now()
+            result_time = (shop_time + offset) - datetime.now()
             if result_time.days < 0:
                 for shopCart in user.shopcarts:
                     product = Product.query.get(shopCart.pid)
@@ -146,19 +145,6 @@ def my_context_processor():
         return {"categorys": categoryList, "category_all": category_all, "uid": "", "length": "0"}
 
 
-class Config(object):
-    # 任务列表
-    JOBS = [
-        {  # 每两个小时更新一下热门商品 因为热门商品按照点击率来判定的
-            'id': 'job1',
-            'func': '__main__:hot_product',
-            'args': (),
-            'trigger': 'cron',  # cron表示定时任务
-            'hour': 2
-        }
-    ]
-
-
 def hot_product():
     redis_cache.delete('productList')
     products = Product.query.filter(Product.is_sell == 1, Product.is_pass == 2).order_by(
@@ -172,13 +158,12 @@ def hot_product():
     redis_cache.set("productList", json_dumps)
 
 
-app.config.from_object(Config())  # 为实例化的flask引入配置
-
-
 @app.errorhandler(404)
 def not_foundPage(error):
     return redirect(url_for('index'))
 
 
-if __name__ == '__main__':
-    app.run()
+scheduler = BackgroundScheduler()
+scheduler.add_job(hot_product, 'interval', seconds=2*60*60)
+scheduler.start()
+

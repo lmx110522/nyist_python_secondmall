@@ -80,3 +80,7 @@ textarea#pDesc {
     background: url(/static/img/null.png) !important;
     background-repeat: no-repeat;
 }
+
+#product_img img {
+    width: 890px;
+}

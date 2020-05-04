@@ -197,6 +197,8 @@ $(function () {
                             $('.xs_table').empty()
                             $(".xs_table").addClass('null_page')
                         }
+                    }else{
+                        zlalert.alertError(result.msg);
                     }
                 })
             }

@@ -227,18 +227,17 @@ def find_one():
     return jsonify({"error": "1"})
 
 
-# 下架
+# 重新提交
 @product_dp.route("/repeat_check")
 def repeat_check():
-    id = request.args.get('pid')
-    products = Product.query.filter(Product.id == id).first()
+    redis_cache.delete("productList")
+    redis_cache.delete("productList1")
+    redis_cache.delete("productList2")
+    pid = request.args.get('pid')
+    products = Product.query.filter(Product.id == pid).first()
     products.is_pass = 0
     db.session.commit()
-    redis_cache.delete("productList");
-    redis_cache.delete("productList1");
     return jsonify({"error": '0'})
-
-    return jsonify({"error": "1"})
 
 
 # 通过
@@ -410,8 +409,14 @@ def deleteProduct():
     if pid == "" or pid is None:
         return jsonify({'error': '1'})
     product = Product.query.get(pid)
-
     if product is not None:
-        db.session.delete(product)
+        pid = product.id
+        shopCart = ShopCart.query.filter(ShopCart.pid == pid).first()
+        if shopCart is not None:
+            return jsonify({"error": "1", "msg": "已经被用户加入购物车，不能下架"})
+        orderItem = OrderItem.query.filter(OrderItem.pid == pid).first()
+        if orderItem is not None:
+            return jsonify({"error": "1", "msg": "已经被用户加入订单列表，不能下架"})
+        product.is_pass = 3
         db.session.commit()
         return jsonify({'error': "0"})

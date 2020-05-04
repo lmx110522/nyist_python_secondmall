@@ -1,6 +1,7 @@
 import base64
 import random
 import uuid
+from datetime import timedelta
 
 from flask import Blueprint, views, render_template, request, jsonify, redirect, url_for, session
 from flask_mail import Message
@@ -124,9 +125,9 @@ def userInfo():
             db.session.delete(order)
             db.session.commit()
     for order in user.orders:
-        result_time = datetime.now() - order.ordertime
-        resultTime = str(result_time).split(':')
-        if int(resultTime[0]) > 0 or int(resultTime[1]) >= 30:
+        offset = timedelta(minutes=20)
+        result_time = (order.ordertime + offset) - datetime.now()
+        if result_time.days < 0:
             for orderItem in order.orderItems:
                 orderItem.product.counts = orderItem.count
                 db.session.delete(orderItem)
@@ -134,11 +135,8 @@ def userInfo():
             db.session.delete(order)
             db.session.commit()
         else:
-            second = resultTime[2]
-            index = str(second).find('.')
-            if index != -1:
-                second = second[0:index]
-            last_time = "" + str(29 - int(resultTime[1])) + ":" + str(60 - int(second))
+            m, s = divmod(result_time.seconds, 60)
+            last_time = "" + str(m) + ":" + str(s)
             order.order_last_time = last_time
             db.session.commit()
     return render_template("userInfo.html", tab=tab, user=user)

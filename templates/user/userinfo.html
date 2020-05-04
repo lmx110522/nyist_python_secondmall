@@ -220,6 +220,7 @@
                                             <td width="10%">操作</td>
                                         </tr>
                                         {% for product in user.products %}
+                                            {% if product.is_pass != 3 %}
                                             <tr>
                                                 <td width="15%"><img src="{{ product.head_img }}"></td>
                                                 <td width="25%"><a href="{{ url_for('product.detail',id=product.id) }}"
@@ -232,7 +233,7 @@
                                                         <span class="shing">正在审核</span>
                                                     {% elif product.is_pass == 1 %}
                                                         <span class="no_pass">审核未通过</span>
-                                                    {% else %}
+                                                    {% elif product.is_pass == 2 %}
                                                         <span class="xsing">销售中</span>
                                                     {% endif %}
                                                 </td>
@@ -241,12 +242,13 @@
                                                         <a href="#" id="{{ product.id }}" class="xj_product">删除</a>
                                                     {% elif product.is_pass == 1 %}
                                                         <a href="#" id="{{ product.id }}" class="repeat-check">重新审核</a>
-                                                    {% else %}
+                                                    {% elif product.is_pass == 2 %}
                                                         <a href="#" id="{{ product.id }}" class="xj_product">下架</a>
                                                     {% endif %}
 
                                                 </td>
                                             </tr>
+                                            {% endif %}
                                         {% endfor %}
 
                                     </table>
