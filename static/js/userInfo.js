@@ -197,7 +197,7 @@ $(function () {
                             $('.xs_table').empty()
                             $(".xs_table").addClass('null_page')
                         }
-                    }else{
+                    } else {
                         zlalert.alertError(result.msg);
                     }
                 })
@@ -250,13 +250,9 @@ function orderLastTime() {
             }
             if (s == 0 && m == 0) {
                 clearInterval(window.order_id)
-                console.log(order_id)
                 $.getJSON("/product/cancelOrder", "order_id=" + order_id, function (result) {
                     if (result.error != "1") {
-                        $that.parents('.order_one').remove()
-                        if ($(".order_one").length == 0) {
-                            $(".order_page").addClass('null_page')
-                        }
+                        window.location.href = "/user/userInfo?tab=3";
                     }
                 })
             }

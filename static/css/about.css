@@ -1,0 +1,66 @@
+.about_area {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.about_ad_img {
+    margin: 0 auto;
+    width: 103%;
+}
+
+.about_ad_img img {
+    width: 100%;
+    height: auto;
+}
+
+.base_word {
+    color: #333;
+    font-family: Helvetica, Arial, "Hiragino Sans GB", "Microsoft Yahei", "微软雅黑", STHeiti, "华文细黑", sans-serif;
+    line-height: 25px;
+}
+
+.about_title {
+    color: firebrick;
+}
+
+.about_small {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.about_desc {
+    font-size: 16px;
+}
+
+.has_join {
+    padding: 10px;
+    background: #F4F4F4 ;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.has_join div {
+    width: 15%;
+    margin: 5px;
+}
+
+.has_join div img {
+    width: 55%;
+    border-radius: 50%;
+}
+
+.has_join div a{
+    cursor: pointer;
+}
+
+.about_area .ad_area{
+    border: 10px solid #F4F4F4;
+}
+
+.about_area .ad_area img{
+    width: 100%;
+}

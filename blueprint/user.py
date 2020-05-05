@@ -1,4 +1,5 @@
 import base64
+import json
 import random
 import uuid
 from datetime import timedelta
@@ -56,7 +57,8 @@ class registerUrl(views.MethodView):
 
     def post(self):
         code = request.form.get("code")
-        random_sample_old = redis_cache.get('random_sample').decode()
+        email = request.form.get("email")
+        random_sample_old = redis_cache.get(email).decode()
         if random_sample_old.lower() == code.lower():
             username = request.form.get("username")
             password = request.form.get("password")
@@ -94,7 +96,7 @@ def sendMail():
     if not isEmail:
         random_sample = random.sample('1234567890abcdefghijklmnopqrstuvwxyz', 4)
         random_sample = ''.join(random_sample)
-        redis_cache.set("random_sample", str(random_sample))
+        redis_cache.set(email, str(random_sample))
         msg = Message(subject="南阳理工学院二手交易平台动态码", recipients=[email])
         msg.html = "<b><img src='http://qiniuyun.donghao.club/nyist.png' " \
                    "style='width:260px'></b><br><b>南阳理工学院二手交易平台注册动态码:" \
@@ -103,6 +105,26 @@ def sendMail():
         return jsonify({"msg": "", 'status': "200"})
     else:
         return jsonify({"msg": "检测到该邮箱已经被注册，一个邮箱只有一个南工二手交易平台账号", 'status': "500"})
+
+
+@user_dp.route("/about")
+def about():
+    userList = redis_cache.get('userList')
+    if userList is None:
+        users = User.query.filter(User.is_ok == 1).order_by(
+            User.create_time.desc()).slice(0, 5)
+        userList = []
+        for user in users:
+            user = User.user_json(user)
+            userList.append(user)
+        json_dumps = json.dumps(userList, ensure_ascii=False)
+        print(json_dumps)
+        redis_cache.set("userList", json_dumps)
+    else:
+        userList = userList.decode('utf8')
+        userList = json.loads(userList)
+        print(userList)
+    return render_template("about.html", userList=userList)
 
 
 @user_dp.route("/userInfo")

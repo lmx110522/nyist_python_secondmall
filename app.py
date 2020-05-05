@@ -36,7 +36,7 @@ def index():
     category = Category.query.all()
     # 热门产品
     if productList is None:
-        products = Product.query.filter(Product.is_sell == 1, Product.is_pass == 2).order_by(
+        products = Product.query.filter(Product.is_sell == 1, Product.is_pass == 2, Product.counts != 0).order_by(
             Product.click_count.desc()).slice(0, 10)
         productList = []
         for product in products:
@@ -51,7 +51,7 @@ def index():
         print(productList)
     # 新产品
     if productList1 is None:
-        products = Product.query.filter(Product.is_sell == 1, Product.is_pass == 2).order_by(
+        products = Product.query.filter(Product.is_sell == 1, Product.is_pass == 2, Product.counts != 0).order_by(
             Product.pdate.desc()).slice(0, 10)
         productList1 = []
         for product in products:
@@ -66,7 +66,7 @@ def index():
         print(productList1)
     # 轮播图商品
     if productList2 is None:
-        products = Product.query.filter(Product.is_hot == 2, Product.is_sell == 1, Product.is_pass == 2).order_by(
+        products = Product.query.filter(Product.is_hot == 2, Product.is_sell == 1, Product.is_pass == 2, Product.counts != 0).order_by(
             Product.pdate.desc()).slice(0, 3)
         productList2 = []
         for product in products:
@@ -79,9 +79,9 @@ def index():
         productList2 = productList2.decode('utf8')
         productList2 = json.loads(productList2)
         print(productList2)
-    # 最新评论商品
+    # 最低价商品
     if productList3 is None:
-        products = Product.query.order_by(
+        products = Product.query.filter(Product.is_sell == 1, Product.is_pass == 2, Product.counts != 0).order_by(
             Product.new_price.asc()).slice(0, 3)
         productList3 = []
         for product in products:
@@ -157,7 +157,7 @@ def my_context_processor():
             length += shopCart.count
 
         return {"uid": uid, "username": user.username, 'user_img': user.img_url, "categorys": categoryList,
-                "category_all": category_all, "last_time": last_time, "length": length}
+                "category_all": category_all, "last_time": last_time, "length": length, "user": user}
     else:
         return {"categorys": categoryList, "category_all": category_all, "uid": "", "length": "0"}
 
@@ -176,10 +176,9 @@ def hot_product():
 
 
 def clear_redis():
-    redis_cache.delete("product");
-    redis_cache.delete("product1");
-    redis_cache.delete("product2");
-    redis_cache.delete("product3");
+    redis_cache.delete("userList")
+    redis_cache.delete("productList1")
+    redis_cache.delete("productList3")
 
 
 @app.errorhandler(404)
@@ -188,6 +187,7 @@ def not_foundPage(error):
 
 
 scheduler = BackgroundScheduler()
-scheduler.add_job(hot_product, 'interval', seconds=2 * 60 * 60)
-scheduler.add_job(clear_redis, 'interval', seconds=2)
+# 1个小时更新热门商品
+scheduler.add_job(hot_product, 'interval', seconds=1 * 60 * 60)
+scheduler.add_job(clear_redis, 'interval', seconds=30 * 60)
 scheduler.start()

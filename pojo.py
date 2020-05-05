@@ -21,6 +21,12 @@ class User(db.Model):
     identity = db.Column(db.Integer, default=0)  # 0普通用户，1会员
     shop_time = db.Column(db.DateTime)
 
+    def user_json(self):
+        user_json = {}
+        user_json["img_url"] = self.img_url
+        user_json["username"] = self.username
+        return user_json
+
 
 # 一级类别
 

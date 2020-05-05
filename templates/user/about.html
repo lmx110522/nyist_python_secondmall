@@ -1,0 +1,44 @@
+{% extends 'user/base.html' %}
+
+{% block title %}
+    关于我们
+{% endblock %}
+{% block head %}
+    <link href="{{ url_for('static',filename='css/about.css') }}" rel="stylesheet" type="text/css"/>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+{% endblock %}
+{% block main %}
+    <div class="about_area container base_word">
+        <div class="about_ad_img">
+            <a href="{{ url_for('product.getClassify',cid=5) }}"><img
+                    src="{{ url_for('static',filename='img/about_ad.png') }}" width="320" height="50" alt="正品保障"
+                    title="正品保障"/></a>
+        </div>
+        <h2 class="about_title">南阳理工二手商城</h2>
+        <span class="about_small">一个可以帮你处理闲置商品的网站</span>
+        <p class="about_desc">
+            本网站非盈利的二手商城，因为越来越多的小伙伴的加入，让我们的未来变得更美好。新注册的用户会展示在这里，我们很感谢每一个
+            注册本系统的用户，是他们的肯定让我们走的更远
+        </p>
+        <div class="has_join">
+            {% for user in userList %}
+                <div>
+                    <img title="{{ user['username'] }}" src="{{ user['img_url'] }}">
+                </div>
+            {% endfor %}
+            <div>
+                <a href="/user/register">
+                    <img class="more" src="{{ url_for('static',filename='image/more.png') }}" title="期待你的加入"
+                         alt="南工二手交易平台"/>
+                </a>
+            </div>
+        </div>
+        <h1 class="about_title">五月最火推荐</h1>
+        <div class="ad_area">
+            <a href="/product/detail?id=9ccbc7628ea211eaaed5acde48001122">
+                <img class="more" src="{{ url_for('static',filename='image/about_ad1.png') }}" title="戴森吹风机"
+                     alt="南工二手交易平台"/>
+            </a>
+        </div>
+    </div>
+{% endblock %}

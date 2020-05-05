@@ -1,116 +1,127 @@
 <div class="span10 last">
-		<div class="topNav clearfix">
-			<ul>
-              {% if username == null %}
+    <div class="topNav clearfix">
+        <ul>
+            {% if username == null %}
                 <li id="headerLogin" class="headerLogin" style="display: list-item;">
                     <a href="{{ url_for('user.login') }}">登录</a>|
                 </li>
                 <li id="headerRegister" class="headerRegister" style="display: list-item;">
-                    <a href="{{url_for('user.register') }}">注册</a>|
+                    <a href="{{ url_for('user.register') }}">注册</a>|
                 </li>
-                  {% else %}
-                      <li id="headerLogin" class="headerLogin" style="display: list-item;">
-                        </li>
-                        <li id="headerRegister" class="headerRegister" style="display: list-item;">
-                            <a href="#" class="user_msg">{{ username }}<span class="glyphicon glyphicon-chevron-down user_info"></span></a>|
-                            <a href="/user/userInfo?tab=3">我的订单</a>|
-                            <a href = "{{ url_for('user.logout') }}">[退出]</a>|
-                        <li id="headerLogout" class="headerLogout"></li>
-                        <div class="user_info_detail">
-                            <div class="u_head"><img src="{{ user_img }}" class="user_head"></div>
-                            <ul class="func_button">
-                                <li class="zuji"><a href="{{ url_for('user.userInfo') }}" style="font-weight: bolder;color: firebrick">个人主页</a></li>
-                                <li><a href="#">信用值:暂无开通</a></li>
-                            </ul>
-                        </div>
-              {% endif %}
-				<li id="headerUsername" class="headerUsername"></li>
-						<li>
-							<a>购物指南</a>
-							|
-						</li>
-						<li>
-							<a>关于我们</a>
-
-						</li>
-			</ul>
-		</div>
-
-		<div class="cart" title="去购物结算">
-			<a  href="/user/userInfo?tab=1">购物车
-                    {% if length != 0 %}
-                        <span class="cart_nums">{{length }}</span>
+            {% else %}
+                <li id="headerLogin" class="headerLogin" style="display: list-item;">
+                </li>
+                <li id="headerRegister" class="headerRegister" style="display: list-item;">
+                    <a href="#" class="user_msg">{{ username }}<span
+                            class="glyphicon glyphicon-chevron-down user_info"></span></a>|
+                    <a href="/user/userInfo?tab=3">我的订单</a>|
+                    <a href="{{ url_for('user.logout') }}">[退出]</a>|
+                <li id="headerLogout" class="headerLogout"></li>
+                <div class="user_info_detail">
+                    <div class="u_head"><img src="{{ user_img }}" class="user_head"></div>
+                    <ul class="func_button">
+                        <li class="zuji"><a href="{{ url_for('user.userInfo') }}"
+                                            style="font-weight: bolder;color: firebrick">个人主页</a></li>
+                        <li>身份：{% if user.identity == 1 %}
+                            <span class="glyphicon glyphicon-queen"
+                                  style="color: #D03A2B;font-size: 12px">管理员</span>
                         {% else %}
-                        <span class="cart_nums">0</span>
-                    {% endif %}
+                            <span class="glyphicon glyphicon-user"
+                                  style="color: #D03A2B;font-size: 12px">普通用户</span>
+                        {% endif %}</li>
+                    </ul>
+                </div>
+            {% endif %}
+            <li id="headerUsername" class="headerUsername"></li>
+            <li>
+                <a>购物指南</a>
+                |
+            </li>
+            <li>
+                <a href="/user/about" target="_blank">关于我们</a>
 
-            </a>
-            {% if last_time != null and last_time != ""%}
-                    <div class="last_time">{{ last_time }}</div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="cart" title="去购物结算">
+        <a href="/user/userInfo?tab=1">购物车
+            {% if length != 0 %}
+                <span class="cart_nums">{{ length }}</span>
+            {% else %}
+                <span class="cart_nums">0</span>
             {% endif %}
 
-		</div>
-			<div class="phone">
-				客服热线:
-				<strong>13193801071</strong>
-			</div>
-	</div>
-	<div class="span24">
-		<ul class="mainNav">
-                    <li class="sp_li">
-						<a href="#">查看所有分类<span class="glyphicon glyphicon-list all_list"></span></a>
-					</li>
-					<li>
-						<a href="{{ url_for('index') }}">首页</a>
+        </a>
+        {% if last_time != null and last_time != "" %}
+            <div class="last_time">{{ last_time }}</div>
+        {% endif %}
 
-					</li>
-					{% for cate in categorys %}
-                        <li>
-                            <a href="{{ url_for('product.getClassify',cid=cate.id) }}">{{ cate["cname"] }}</a>
+    </div>
+    <div class="phone">
+        客服热线:
+        <strong>13193801071</strong>
+    </div>
+</div>
+<div class="span24">
+    <ul class="mainNav">
+        <li class="sp_li">
+            <a href="#">查看所有分类<span class="glyphicon glyphicon-list all_list"></span></a>
+        </li>
+        <li>
+            <a href="{{ url_for('index') }}">首页</a>
 
-                        </li>
-					{% endfor %}
-                    <div class="all_list_detail">
-                        <ul class="out_ul">
-                            {% for category in category_all %}
-                                <li class="out_li">
-                                    <span>{{ category.cname }}</span>
-                                    <ul class="in_ul">
-                                        {% for categorysecond in category.categoryseconds %}
-                                            <li  class="in_li"><a href="{{ url_for('product.getClassify',csid=categorysecond.id) }}">{{categorysecond.csname}}</a></li>
-                                            {% if loop.index == 5 %}
-                                                <li  class="in_li"><a href="{{ url_for('product.getClassify',cid=category.id) }}" style="font-weight: bold">更多</a></li>
-                                                {% break %}
-                                            {% endif %}
-                                        {% endfor %}
-                                    </ul>
+        </li>
+        {% for cate in categorys %}
+            <li>
+                <a href="{{ url_for('product.getClassify',cid=cate.id) }}">{{ cate["cname"] }}</a>
+
+            </li>
+        {% endfor %}
+        <div class="all_list_detail">
+            <ul class="out_ul">
+                {% for category in category_all %}
+                    <li class="out_li">
+                        <span>{{ category.cname }}</span>
+                        <ul class="in_ul">
+                            {% for categorysecond in category.categoryseconds %}
+                                <li class="in_li"><a
+                                        href="{{ url_for('product.getClassify',csid=categorysecond.id) }}">{{ categorysecond.csname }}</a>
                                 </li>
+                                {% if loop.index == 5 %}
+                                    <li class="in_li"><a href="{{ url_for('product.getClassify',cid=category.id) }}"
+                                                         style="font-weight: bold">更多</a></li>
+                                    {% break %}
+                                {% endif %}
                             {% endfor %}
                         </ul>
+                    </li>
+                {% endfor %}
+            </ul>
 
-                    </div>
+        </div>
 
-		</ul>
-	</div>
+    </ul>
+</div>
 
-    <div class="demo">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="navbar"><i class="glyphicon glyphicon-shopping-cart"></i>
-                        <ul class="menu">
-                            <li><a href="#" class="fa fa-facebook"></a></li>
-                            <li><a href="#" class="fa fa-google-plus"></a></li>
-                            <li><a href="#" class="fa fa-twitter"></a></li>
-                            <li><a href="#" class="fa fa-linkedin"></a></li>
-                            <li><a href="#" class="fa fa-pinterest"></a></li>
-                            <li><a href="#" class="fa fa-rss"></a></li>
-                            <li><a href="#" class="fa fa-instagram"></a></li>
-                            <li><a href="#" class="fa fa-skype"></a></li>
-                            <li><a href="#" class="fa fa-github"></a></li>
-                        </ul>
-                    </div>
+<div class="demo">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="navbar"><i class="glyphicon glyphicon-shopping-cart"></i>
+                    <ul class="menu">
+                        <li><a href="#" class="fa fa-facebook"></a></li>
+                        <li><a href="#" class="fa fa-google-plus"></a></li>
+                        <li><a href="#" class="fa fa-twitter"></a></li>
+                        <li><a href="#" class="fa fa-linkedin"></a></li>
+                        <li><a href="#" class="fa fa-pinterest"></a></li>
+                        <li><a href="#" class="fa fa-rss"></a></li>
+                        <li><a href="#" class="fa fa-instagram"></a></li>
+                        <li><a href="#" class="fa fa-skype"></a></li>
+                        <li><a href="#" class="fa fa-github"></a></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+</div>

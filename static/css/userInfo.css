@@ -189,6 +189,7 @@ table tr:hover{
     background: url(/static/img/null.png) !important;
 }
 .order_last_time{
+    color: #D03A2B;
     display: inline-block;
     font-family: fantasy;
     font-size: 18px;
