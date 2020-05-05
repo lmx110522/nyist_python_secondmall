@@ -13,84 +13,89 @@
 
 {% block main %}
     <div class="container productList">
-		<div class="span6">
-			<div class="hotProductCategory">
-				{% for category in categorys %}
-				    <dl>
+        <div class="span6">
+            <div class="hotProductCategory">
+                {% for category in categorys %}
+                    <dl>
                         <dt>
                             {% if categorySecond.category.id == category.id or category_my.id == category.id %}
-                                <a href="{{ url_for('product.getClassify',cid=category.id) }}" class="category"> {{category.cname}}</a>
-                                {% else %}
-                                    <a href="{{ url_for('product.getClassify',cid=category.id) }}"> {{category.cname}}</a>
+                                <a href="{{ url_for('product.getClassify',cid=category.id) }}"
+                                   class="category"> {{ category.cname }}</a>
+                            {% else %}
+                                <a href="{{ url_for('product.getClassify',cid=category.id) }}"> {{ category.cname }}</a>
                             {% endif %}
 
                         </dt>
                         {% for categorysecond in category.categoryseconds %}
                             <dd>
-                                    {% if categorySecond.id == categorysecond.id %}
-                                        <a href = "{{ url_for('product.getClassify',csid=categorysecond.id) }}" class="categorysecond">{{categorysecond.csname}}</a>
-                                        {% else %}
-                                            <a href = "{{ url_for('product.getClassify',csid=categorysecond.id) }}">{{categorysecond.csname}}</a>
-                                    {% endif %}
+                                {% if categorySecond.id == categorysecond.id %}
+                                    <a href="{{ url_for('product.getClassify',csid=categorysecond.id) }}"
+                                       class="categorysecond">{{ categorysecond.csname }}</a>
+                                {% else %}
+                                    <a href="{{ url_for('product.getClassify',csid=categorysecond.id) }}">{{ categorysecond.csname }}</a>
+                                {% endif %}
                             </dd>
                         {% endfor %}
-					</dl>
-				{% endfor %}
-			</div>
-		</div>
-		<div class="span18 last">
-			<form id="productForm" action="./image/蔬菜 - Powered By Mango Team.htm" method="get">
-				<input type="hidden" id="brandId" name="brandId" value="">
-				<input type="hidden" id="promotionId" name="promotionId" value="">
-				<input type="hidden" id="orderType" name="orderType" value="">
-				<input type="hidden" id="pageNumber" name="pageNumber" value="1">
-				<input type="hidden" id="pageSize" name="pageSize" value="20">
+                    </dl>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="span18 last">
+            <input type="hidden" id="brandId" name="brandId" value="">
+            <input type="hidden" id="promotionId" name="promotionId" value="">
+            <input type="hidden" id="orderType" name="orderType" value="">
+            <input type="hidden" id="pageNumber" name="pageNumber" value="1">
+            <input type="hidden" id="pageSize" name="pageSize" value="20">
 
-				<div id="result" class="result table clearfix">
-						<ul class="my_list">
-						{% for product in products %}
-						    <li>
-                                <a href="{{ url_for('product.detail',id=product.id) }}" target="_blank">
-                                    <img src="{{product.head_img }}" width="170" height="170"  style="display: inline-block;"/>
+            <div id="result" class="result table clearfix">
+                <ul class="my_list">
+                    {% for product in products %}
+                        <li>
+                            <a href="{{ url_for('product.detail',id=product.id) }}" target="_blank">
+                                <img src="{{ product.head_img }}" width="170" height="170"
+                                     style="display: inline-block;"/>
 
-                                    <span class="product_title">
-                                    {{product.pname }}
+                                <span class="product_title">
+                                    {{ product.pname }}
                                     </span>
 
-                                    <span class="price">
-                                        商城价： ￥ {{product.new_price}}元
+                                <span class="price">
+                                        商城价： ￥ {{ product.new_price }}元
                                     </span>
-                                </a>
-                            </li>
-						{% endfor %}
-						</ul>
-				</div>
-                <div class="row pad-15">
-                    <div class="col-md-12">
-                        <nav class="pagination-outer" aria-label="Page navigation">
-                            {% if products|length > 0 %}
-                                <ul class="pagination my_pagination">
-                                    {% for page in range(pages) %}
-                                        {% if (page+1) == currentPage %}
-                                        <li class="page-item active"><a class="page-link" href="{{ url_for('product.getClassify',pageNum=page,cid=category_my.id,csid=categorySecond.id) }}">{{ page+1 }}</a></li>
-                                        {% else %}
-                                           <li class="page-item"><a class="page-link" href="{{ url_for('product.getClassify',pageNum=page,cid=category_my.id,csid=categorySecond.id) }}">{{ page+1 }}</a></li>
-                                        {% endif %}
-                                    {% endfor %}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="row pad-15">
+                <div class="col-md-12">
+                    <nav class="pagination-outer" aria-label="Page navigation">
+                        {% if products|length > 0 %}
+                            <ul class="pagination my_pagination">
+                                {% for page in range(pages) %}
+                                    {% if (page+1) == currentPage %}
+                                        <li class="page-item active"><a class="page-link"
+                                                                        href="{{ url_for('product.getClassify',pageNum=page,cid=category_my.id,csid=categorySecond.id) }}">
+                                            {{ page+1 }}</a></li>
+                                    {% else %}
+                                        <li class="page-item"><a class="page-link"
+                                                                 href="{{ url_for('product.getClassify',pageNum=page,cid=category_my.id,csid=categorySecond.id) }}">
+                                            {{ page+1 }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
                                 </li>
-                                </ul>
-                            {% endif %}
-                        </nav>
-                    </div>
+                            </ul>
+                        {% endif %}
+                    </nav>
+                </div>
 
-	    </div>
-			</form>
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
     <script>
         $(function () {
             $(".product_title").dotdotdot();
-            if($("#result .my_list li").length == 0){
+            if ($("#result .my_list li").length == 0) {
                 $('#result').addClass('null_page')
             }
         })

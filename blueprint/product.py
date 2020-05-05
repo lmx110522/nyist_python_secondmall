@@ -115,6 +115,7 @@ def add_product():
             img_url = QINIU_URL + filename
             if i == 0:
                 head_img = img_url
+            i = i+1
             img_urls += (img_url + "@")
 
     pname = request.form.get("pname")
