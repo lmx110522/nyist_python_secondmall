@@ -26,11 +26,13 @@ send_mail.init_app(app)
 with app.app_context():
     db.create_all()
 
+
 @app.route('/')
 def index():
     productList = redis_cache.get('productList')
     productList1 = redis_cache.get('productList1')
     productList2 = redis_cache.get('productList2')
+    productList3 = redis_cache.get('productList3')
     category = Category.query.all()
     # 热门产品
     if productList is None:
@@ -77,8 +79,23 @@ def index():
         productList2 = productList2.decode('utf8')
         productList2 = json.loads(productList2)
         print(productList2)
+    # 最新评论商品
+    if productList3 is None:
+        products = Product.query.order_by(
+            Product.new_price.asc()).slice(0, 3)
+        productList3 = []
+        for product in products:
+            product = Product.product_json(product)
+            productList3.append(product)
+        json_dumps = json.dumps(productList3, ensure_ascii=False)
+        print(json_dumps)
+        redis_cache.set("productList3", json_dumps)
+    else:
+        productList3 = productList3.decode('utf8')
+        productList3 = json.loads(productList3)
+        print(productList3)
     return render_template('user/index.html', hot_products=productList, new_products=productList1,
-                           extend_products=productList2, categorys=category)
+                           extend_products=productList2, comment_products=productList3, categorys=category)
 
 
 @app.route("/admin")
@@ -158,12 +175,19 @@ def hot_product():
     redis_cache.set("productList", json_dumps)
 
 
+def clear_redis():
+    redis_cache.delete("product");
+    redis_cache.delete("product1");
+    redis_cache.delete("product2");
+    redis_cache.delete("product3");
+
+
 @app.errorhandler(404)
 def not_foundPage(error):
     return redirect(url_for('index'))
 
 
 scheduler = BackgroundScheduler()
-scheduler.add_job(hot_product, 'interval', seconds=2*60*60)
+scheduler.add_job(hot_product, 'interval', seconds=2 * 60 * 60)
+scheduler.add_job(clear_redis, 'interval', seconds=2)
 scheduler.start()
-

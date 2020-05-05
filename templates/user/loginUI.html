@@ -12,6 +12,9 @@
 
 {% block main %}
     <div class="container login">
+        <div class="ad_area">
+            <img src="../../static/img/welcome.png">
+        </div>
         <div class="span12">
             <div class="ad">
                 <img src="{{ url_for('static',filename='image/login.jpg') }}" width="500" height="330" alt="会员登录"
@@ -71,11 +74,14 @@
 
                                 </th>
                                 <td>
-{#                                    <label>#}
-{#                                        <input type="radio" id="isRememberUsername" name="isRememberUsername">记住用户名#}
-{#                                    </label>#}
+                                    {#                                    <label>#}
+                                    {#                                        <input type="radio" id="isRememberUsername" name="isRememberUsername">记住用户名#}
+                                    {#                                    </label>#}
                                     <label>
-                                        &nbsp;&nbsp;<span class="requiredField">***</span>忘记密码先输入邮箱然后<a title="点我找回" href="#" style="color: firebrick" class="reset_password">找回密码</a>
+                                        &nbsp;&nbsp;<span class="requiredField">***</span>忘记密码先输入邮箱然后<a title="点我找回"
+                                                                                                        href="#"
+                                                                                                        style="color: firebrick"
+                                                                                                        class="reset_password">找回密码</a>
                                     </label>
                                 </td>
                             </tr>

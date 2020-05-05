@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}-南工二手交易市场</title>
+    <!--[if IE]>
+    <script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
+    <![endif]-->
     <script src="{{ url_for('static',filename='js/jquery-3.1.1.min.js') }}"></script>
     <link href="{{ url_for('static',filename='css/base.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ url_for('static',filename='sweetalert/sweetalert.css') }}" rel="stylesheet" type="text/css"/>
@@ -25,8 +28,11 @@
     {% block head %}{% endblock %}
 </head>
 <body>
-<div class="main_show">
-    <div class="container header">
+<div class="adad_area">
+    <img src="../../static/image/bg/adadad.png">
+</div>
+<div class="header">
+    <div class="container">
         <div class="span5">
             <div class="logo">
                 <a href="{{ url_for('index') }}">
@@ -41,7 +47,16 @@
         </div>
         {% include 'user/menu.html' %}
     </div>
+</div>
+<div id="main_show_id" class="main_show">
     {% block main %}{% endblock %}
+    {#小火箭#}
+    <div style="display: none;" id="rocket-to-top">
+        <div style="opacity:0;display: block;" class="level-2"></div>
+        <div class="level-3"></div>
+    </div>
+</div>
+<div class="my_footer">
     <div class="container footer">
         <div class="span24">
             <div class="footerAd">
@@ -93,10 +108,13 @@
             <div class="copyright">Copyright © 2020 南工二手交易市场 版权所有</div>
         </div>
     </div>
-    {#小火箭#}
-    <div style="display: none;" id="rocket-to-top">
-        <div style="opacity:0;display: block;" class="level-2"></div>
-        <div class="level-3"></div>
+</div>
+<div class="easy_nav">
+    <div><a href="{{ url_for('product.getClassify',cid=5) }}" target="_blank">爆品类别</a></div>
+    <div><a href="/user/userInfo?tab=2" target="_blank">我的发布</a></div>
+    <div><a href="/user/userInfo?tab=3" target="_blank">我的订单</a></div>
+    <div><a href="{{ url_for('user.userInfo') }}" target="_blank">个人主页</a></div>
+    <div><a href="/user/userInfo?tab=1" target="_blank">购物车<span class="glyphicon glyphicon-shopping-cart"></span></a>
     </div>
 </div>
 </body>

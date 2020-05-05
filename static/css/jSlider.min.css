@@ -1,0 +1,278 @@
+/** @jSlider - a jQuery Plugin* @version 1.0.1** @author Thuy Nguyen ducthuy@gmail.com* @website http://startjs.com/* @github https://github.com/copthuy/jSlider* MIT License* Copyright (c) 2018 Thuy Nguyen*/
+.jSlider {
+    position: relative;
+    height: auto
+}
+
+.jSlider div, .jSlider span {
+    box-sizing: border-box !important
+}
+
+.jSlider img {
+    width: 100%;
+    height: auto;
+    display: block
+}
+
+.jSlider > div > * {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    display: block
+}
+
+.jSlider > img:first-child {
+    visibility: hidden;
+    -ms-filter: "alpha(opacity=0)";
+    filter: alpha(opacity=0);
+    -khtml-opacity: 0;
+    -moz-opacity: 0;
+    opacity: 0
+}
+
+.jSlider .slider-content {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0
+}
+
+.jSlider .slider-content-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden
+}
+
+.jSlider .slider-slides {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: visible;
+    cursor: move;
+    cursor: -webkit-grab;
+    cursor: -moz-grab
+}
+
+.jSlider .grabbing {
+    cursor: -webkit-grabbing;
+    cursor: -moz-grabbing
+}
+
+.jSlider.fade-transition .slider-slides, .jSlider.fade-transition .grabbing {
+    cursor: e-resize
+}
+
+.jSlider.background-transition .slider-slides, .jSlider.background-transition .grabbing {
+    cursor: default
+}
+
+.jSlider .slider-slides > div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.webkit-slider .slider-content, .webkit-slider .slider-content div, .webkit-slider .slider-content img {
+    -webkit-transform: translateZ(0);
+    -webkit-perspective: 1000;
+    -webkit-backface-visibility: hidden
+}
+
+.webkit-slider .controller span {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+}
+
+.jSlider [class*=appear-] {
+    -ms-filter: "alpha(opacity=0)";
+    filter: alpha(opacity=0);
+    -khtml-opacity: 0;
+    -moz-opacity: 0;
+    opacity: 0
+}
+
+.jSlider .cssAnimation {
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s
+}
+
+.jSlider .controller {
+    display: block;
+    visibility: hidden
+}
+
+.jSlider .controller > div {
+    width: auto;
+    height: auto;
+    display: none
+}
+
+.jSlider .controller span {
+    cursor: pointer
+}
+
+.jSlider .indicator {
+    visibility: hidden;
+    text-align: center;
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    right: 0
+}
+
+.jSlider .indicator span {
+    font-size: 0;
+    line-height: 0;
+    width: 11px;
+    height: 11px;
+    margin-left: 10px;
+    background: green;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    display: inline-block;
+    visibility: visible
+}
+
+.jSlider .indicator span:first-child {
+    margin-left: 0
+}
+
+.jSlider .indicator span.selected {
+    background: #0fa4f6;
+}
+
+.jSlider .navigator {
+    visibility: hidden
+}
+
+.jSlider .navigator span {
+    font-size: 0;
+    line-height: 0;
+    width: 50px;
+    height: 50px;
+    margin-top: -25px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    -webkit-border-radius: 50px;
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    display: block;
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    visibility: visible
+}
+
+.jSlider .navigator span:hover {
+    background: rgba(0, 0, 0, 0.5)
+}
+
+.jSlider .navigator .disabled {
+    display: none;
+    cursor: default
+}
+
+.jSlider .navigator .prev {
+    left: 5%
+}
+
+.jSlider .navigator .next {
+    right: 5%
+}
+
+.jSlider .navigator span:before, .jSlider .navigator span:after {
+    content: '';
+    display: block;
+    position: absolute
+}
+
+.jSlider .navigator span:before {
+    width: 20px;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, .35)
+}
+
+.jSlider .navigator span:hover:before {
+    border-top-color: rgba(255, 255, 255, .35)
+}
+
+.jSlider .navigator span:after {
+    height: 20px;
+    width: 0;
+    border-left: 1px solid rgba(0, 0, 0, .35)
+}
+
+.jSlider .navigator span:hover:after {
+    border-left-color: rgba(255, 255, 255, .35)
+}
+
+.jSlider .navigator .prev:before, .jSlider .navigator .prev:after {
+    top: 18px;
+    left: 18px
+}
+
+.jSlider .navigator .next:before, .jSlider .navigator .next:after {
+    bottom: 18px;
+    right: 18px
+}
+
+.jSlider .msie8 .navigator span:before {
+    width: 0;
+    height: 0;
+    border-width: 10px 15px;
+    border-style: solid;
+    border-color: transparent;
+    top: 15px;
+    bottom: auto
+}
+
+.jSlider .msie8 .navigator span:after {
+    display: none
+}
+
+.jSlider .msie8 .navigator .prev:before {
+    border-left-width: 0;
+    border-right-color: #ccc;
+    left: 15px
+}
+
+.jSlider .msie8 .navigator .next:before {
+    border-right-width: 0;
+    border-left-color: #ccc;
+    right: 15px
+}
+
+@media (max-width: 767px) {
+    .jSlider .indicator span {
+        width: 7px;
+        height: 7px;
+        margin-left: 7px
+    }
+}
+
+@media (max-width: 480px) {
+    .jSlider .indicator span {
+        width: 5px;
+        height: 5px;
+        margin-left: 5px
+    }
+}

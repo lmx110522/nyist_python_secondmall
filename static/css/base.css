@@ -12,6 +12,7 @@ body {
     background: #F4F4F4 !important;
 }
 
+
 .main_show {
     background: #FFFFFF;
     width: 60% !important;
@@ -21,8 +22,56 @@ body {
     color: #666666;
     text-decoration: none;
     font: 12px tahoma, Arial, Verdana, sans-serif;
+    z-index: 1000000;
+}
+
+.adad_area {
+    position: fixed;
+    top: 25%;
+    z-index: -1;
+    left: 1%;
+}
+
+.adad_area img {
+    width: 18%;
 }
 
 .footer {
     background: #FFFFFF !important;
+}
+
+.easy_nav {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 35%;
+    right: 16%;
+    color: #666;
+    background: white;
+}
+
+.easy_nav div {
+    padding: 8px;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 15px;
+    border-bottom: 1px solid #F4F4F4;
+}
+
+.easy_nav div a {
+    color: #D03A2B;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.header {
+    background: white;
+    border-bottom: 2px solid #F4F4F4;
+}
+
+.my_footer {
+    background: white;
+    border-bottom: 2px solid #F4F4F4;
 }
