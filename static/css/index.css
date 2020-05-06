@@ -770,7 +770,7 @@ ul.product_msg1 li:last-child {
 }
 
 .closeMt:hover {
-    color: firebrick;
+    color: #E14961;
 }
 
 .menu_cate {
@@ -831,7 +831,7 @@ ul.product_msg1 li:last-child {
 
 .recommed_area h4 {
     text-align: center;
-    color: firebrick;
+    color: #E14961;
 }
 
 .recommed_area .price {

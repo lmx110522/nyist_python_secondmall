@@ -90,7 +90,7 @@ $(function () {
             $(this).addClass('edit_msg')
             $(this).text("确认修改")
             $(".password").after('<tr><td><span class="msg_left">旧密码</span></td><td><input type="text" placeholder="请先输入旧密码，正确才可以修改密码，不修改可以不填" class="form-control add_password old_password"><p class="password_error" style="margin-top:10px;\n' +
-                '    color:firebrick;"></p></td></tr>')
+                '    color:#E14961;"></p></td></tr>')
             $(".can_change").removeAttr('disabled')
             $(".reset_msg").css('display', 'inline-block')
         }
@@ -103,7 +103,7 @@ $(function () {
                 if (result.flag == true) {
                     $(".old_password").parents('tr').remove()
                     $(".password").after('<tr class="new_password"><td><span class="msg_left">新密码</span></td><td><input type="password" placeholder="输入新密码" name="password" id="passoword" class="form-control add_password new_password1 can_change"><p  class="password_error1" style="margin-top:10px;\n' +
-                        '    color:firebrick;"></p></td></tr>' +
+                        '    color:#E14961;"></p></td></tr>' +
                         '<tr><td><span class="msg_left">确认密码</span></td><td><input type="password" placeholder="确认密码"  class="form-control can_change repassword add_password"></td>')
                     $("#passoword").focus()
                 } else {

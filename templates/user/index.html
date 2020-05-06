@@ -98,10 +98,10 @@
                                                                  style="display: block;">
                                                             <span class="information" title="{{ product["pname"] }}">
                                       <ul class="product_msg">
-                                            <li>数量:仅有<span style="color: firebrick">{{ product["counts"] }}</span>个</li>
+                                            <li>数量:仅有<span style="color: #E14961">{{ product["counts"] }}</span>个</li>
                                             <li>出售价:<span
-                                                    style="color: firebrick">￥{{ product["new_price"] }}</span></li>
-                                            <li>原价:<span style="color: firebrick">￥<del>{{ product["old_price"] }}</del></span></li>
+                                                    style="color: #E14961">￥{{ product["new_price"] }}</span></li>
+                                            <li>原价:<span style="color: #E14961">￥<del>{{ product["old_price"] }}</del></span></li>
                                             <li><button type="button"
                                                         onclick="window.open('{{ url_for('product.detail',id=product.id) }}')"
                                                         class="btn btn-danger buy" data-toggle="button"
@@ -143,10 +143,10 @@
                                                                  style="display: block;">
                                                             <span class="information" title="{{ product["pname"] }}">
                                       <ul class="product_msg">
-                                            <li>数量:仅有<span style="color: firebrick">{{ product["counts"] }}</span>个</li>
+                                            <li>数量:仅有<span style="color: #E14961">{{ product["counts"] }}</span>个</li>
                                             <li>出售价:<span
-                                                    style="color: firebrick">￥{{ product["new_price"] }}</span></li>
-                                            <li>原价:<span style="color: firebrick">￥<del>{{ product["old_price"] }}</del></span></li>
+                                                    style="color: #E14961">￥{{ product["new_price"] }}</span></li>
+                                            <li>原价:<span style="color: #E14961">￥<del>{{ product["old_price"] }}</del></span></li>
                                             <li><button type="button"
                                                         onclick="window.open('{{ url_for('product.detail',id=product.id) }}')"
                                                         class="btn btn-danger buy" data-toggle="button"
@@ -360,7 +360,7 @@
     <div class="modal fade" id="myModal_ads" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content mt_content">
-                <div class="ad_djs">广告倒计时<span class="djs_time" style="color: firebrick;font-weight: bolder">5</span>秒
+                <div class="ad_djs">广告倒计时<span class="djs_time" style="color: #E14961;font-weight: bolder">5</span>秒
                     <i class="glyphicon glyphicon-remove-circle closeMt"></i></div>
                 <div class="ad_tj">好物推荐</div>
                 <img class="mt_img" title="爆品推荐哟"

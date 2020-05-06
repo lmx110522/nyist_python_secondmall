@@ -11,7 +11,7 @@
             <div class="loginpage">
                 <div class="loginpage-content insert_loginUI">
                     <div class="loginpage-head">
-                        <h2>会员登录</h2>
+                        <h2 style="color: #E14961">会员登录</h2>
                     </div>
                     <div class="loginpage-form">
                         <form action="#" id="my_Form_mt">
@@ -21,7 +21,7 @@
                                 <input type="text" form="my_Form_mt" oninput="clear_email_msg()"
                                        class="form-control must_input find_password" id="username1" name="email"
                                        placeholder="输入您的QQ邮箱">
-                                <span id="email_msg" class="msg" style="color: firebrick">{{ email_msg }}</span>
+                                <span id="email_msg" class="msg" style="color: #E14961">{{ email_msg }}</span>
                             </div>
                             <div class="form-group">
                                 <label for="password1">密码</label>
@@ -36,7 +36,7 @@
                                     onclick="this.src='{{ url_for('validate_code.get_code') }}?'+ Math.random()"
                                     onclass="captchaImage" class="get_pic_code"
                                     src="{{ url_for('validate_code.get_code') }}" title="点击更换验证码">
-                                <span id="code_msg" class="msg" style="color: firebrick">{{ code_msg }}</span>
+                                <span id="code_msg" class="msg" style="color: #E14961">{{ code_msg }}</span>
                             </div>
                             <div class="login-button">
                                 <button type="button" class="btn btn-block btn-primary" id="login"

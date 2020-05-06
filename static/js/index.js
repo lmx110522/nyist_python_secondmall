@@ -27,7 +27,7 @@
 
          $(".must_input_product").change(function () {
             $(this).css({
-                "color":'firebrick',
+                "color":'#E14961',
                 'font-size':'16px'
             })
         })

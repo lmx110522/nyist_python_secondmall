@@ -10,6 +10,11 @@
     width: 103%;
 }
 
+.modal-content {
+    width: 1000px;
+    margin: 150px -330px 0px!important;
+}
+
 .about_ad_img img {
     width: 100%;
     height: auto;
@@ -22,7 +27,7 @@
 }
 
 .about_title {
-    color: firebrick;
+    color: #E14961;
 }
 
 .about_small {

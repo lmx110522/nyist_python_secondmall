@@ -1110,10 +1110,10 @@ div.span10 .func_button{
 	margin-left: 10px;
 }
 ul.mainNav> li:first-child{
-	background: firebrick;
+	background: #E14961;
 }
 ul.mainNav > li:first-child:hover{
-	background: firebrick;
+	background: #E14961;
 }
 .all_list_detail{
 	width: 800px;
@@ -1177,7 +1177,7 @@ ul.mainNav > li:first-child:hover{
     margin-left: 30px;
 }
 .other_msg  a:hover{
-	color: firebrick;
+	color: #E14961;
 }
 .demo{
 	display: none;
@@ -1203,7 +1203,7 @@ ul.mainNav > li:first-child:hover{
 
 }
 .category{
-	color: firebrick !important;
+	color: #E14961 !important;
     font-weight: bolder !important;
 }
 .categorysecond{

@@ -1,5 +1,5 @@
 .ta_01 h2 {
-    color: firebrick;
+    color: #E14961;
     font-size: 30px;
     font-family: "Microsoft YaHei", "宋体", "Segoe UI", "Lucida Grande", Helvetica, Arial, sans-serif, FreeSans, Arimo;
 }
@@ -15,7 +15,7 @@
 }
 
 .container td > tr > a.open_detail:hover {
-    color: firebrick;
+    color: #E14961;
 }
 
 .container td {
@@ -46,16 +46,16 @@ div.container {
 }
 
 .btn-success:hover {
-    background: firebrick !important;
+    background: #E14961 !important;
 }
 
 input#pname {
-    color: firebrick;
+    color: #E14961;
     font-weight: bolder;
 }
 
 textarea#pDesc {
-    color: firebrick;
+    color: #E14961;
     font-weight: bolder;
 }
 

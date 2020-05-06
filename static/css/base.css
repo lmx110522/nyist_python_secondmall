@@ -1,6 +1,7 @@
 * {
     margin: 0px;
     padding: 0px;
+    font-family: Helvetica, Arial, "Hiragino Sans GB", "Microsoft Yahei", "微软雅黑", STHeiti, "华文细黑", sans-serif;
 }
 
 a {
@@ -12,8 +13,20 @@ body {
     background: #F4F4F4 !important;
 }
 
+.my_hr{
+    border-bottom: 3px solid #E14961 !important;
+}
+
+#fix {
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    position: fixed;
+    color: #fff;
+}
 
 .main_show {
+    padding-top: 125px;
     background: #FFFFFF;
     width: 60% !important;
     height: 90%;

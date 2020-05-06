@@ -874,7 +874,7 @@ div.productContent .name {
     line-height: 26px;
     float: right;
     clear: right;
-    color: #414141;
+    color: #E14961;
     font-size: 14px;
     font-weight: bold;
 }
@@ -1255,7 +1255,6 @@ div.productContent .introduction .title, div.productContent .parameter .title {
     height: 29px;
     line-height: 29px;
     margin-bottom: 10px;
-    border-top: 1px solid #aaa8a9;
     background-color: #d3d3d3;
 }
 
@@ -1263,11 +1262,10 @@ div.productContent .introduction .title strong, div.productContent .parameter .t
     display: block;
     float: left;
     padding: 0px 20px;
-    color: #ffffff;
+    color: #6b6969;
     font-size: 14px;
     font-weight: bold;
-    font-family: "Microsoft YaHei";
-    background-color: #aaa8a9;
+    background-color: #F4F4F4;
 }
 
 div.productContent .introduction {
@@ -1524,7 +1522,6 @@ div.productContent .consultation .content p {
 }
 
 .detail_all {
-    /*border-top: 2px solid rgba(211, 211, 211, 0.3);*/
     padding-bottom: 25px;
 }
 
@@ -1534,7 +1531,7 @@ textarea {
 
 h3 {
     text-align: center;
-    color: firebrick;
+    color: #E14961;
 }
 
 .write_comment_area .comment_send {
@@ -1543,19 +1540,24 @@ h3 {
     text-align: center;
 }
 
-.show_love_user_area .show_love_user {
-
+.show_love_user_area .show_love_user{
+    display: flex;
+    flex-direction: row;
+    min-height: 50px;
+    margin: 10px;
+    padding: 5px;
+    border-top: 1px solid #F4F4F4;
+    border-bottom: 1px solid #F4F4F4;
 }
 
-.show_love_user_area .show_love_user li {
-    width: 60px;
-    border: 2px solid snow;
+.show_love_user_area .show_love_user div {
+    width: 90px;
     height: auto;
     float: left;
     margin-right: 10px;
 }
 
-.show_love_user_area .show_love_user li img {
+.show_love_user_area .show_love_user div img {
     width: 60px;
     height: 60px;
     border-radius: 30px;
@@ -1565,7 +1567,6 @@ h3 {
     width: 100%;
     margin: 20px 0px;
     height: auto;
-    /*border: 1px solid red;*/
 }
 
 .show_comment_area .show_comment_content {
@@ -1580,13 +1581,14 @@ h3 {
     border-radius: 30px;
     display: inline-block;
     float: left;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 .show_comment_content p {
     overflow: hidden;
     zoom: 1;
     padding: 30px 0px 20px 20px;
+    font-size: 13px;
 }
 
 .show_comment_content strong {
@@ -1606,18 +1608,13 @@ div.container .pagination .last {
 }
 
 .show_comment_content strong a:hover {
-    color: firebrick;
-}
-
-.show_love_user_area {
-    margin-top: 40px;
+    color: #E14961;
 }
 
 .show_all_reply {
     width: 100%;
     height: auto;
     margin-top: 27px;
-    /*border: 1px solid deepskyblue;*/
     padding: 5px 15px 0px 55px;
 }
 

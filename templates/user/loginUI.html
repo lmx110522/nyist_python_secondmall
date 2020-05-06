@@ -40,7 +40,7 @@
                                     <input type="text" id="username" name="email" oninput="clear_email_msg()"
                                            class="text must_input find_password" maxlength="20">
                                     <span id="email_msg" class="msg"
-                                          style="color: firebrick;margin-left:5px">{{ email_msg }}</span>
+                                          style="color: #E14961;margin-left:5px">{{ email_msg }}</span>
                                 </td>
                             </tr>
                             <tr>
@@ -65,7 +65,7 @@
                                                 onclass="captchaImage" class="get_pic_code"
                                                 src="{{ url_for('validate_code.get_code') }}" title="点击更换验证码">
                                              <span id="code_msg" class="msg"
-                                                   style="color: firebrick;margin-left:5px">{{ code_msg }}</span>
+                                                   style="color: #E14961;margin-left:5px">{{ code_msg }}</span>
                                         </span>
                                 </td>
                             </tr>
@@ -80,7 +80,7 @@
                                     <label>
                                         &nbsp;&nbsp;<span class="requiredField">***</span>忘记密码先输入邮箱然后<a title="点我找回"
                                                                                                         href="#"
-                                                                                                        style="color: firebrick"
+                                                                                                        style="color: #E14961"
                                                                                                         class="reset_password">找回密码</a>
                                     </label>
                                 </td>

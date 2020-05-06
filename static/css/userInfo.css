@@ -223,7 +223,7 @@ span.no_pass{
     margin-top: 30px;
 }
 .xs_table a:hover{
-    color: firebrick;
+    color: #E14961;
 }
 .xs_table td{
     padding: 10px !important;

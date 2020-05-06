@@ -43,7 +43,8 @@
 
             <div class="productImage">
 
-                <a title="" style="outline-style: none; text-decoration: none;" id="zoom" href="{{ images[0] }}" target="_blank"
+                <a title="" style="outline-style: none; text-decoration: none;" id="zoom" href="{{ images[0] }}"
+                   target="_blank"
                    rel="gallery">
                     <div class="zoomPad">
                         <img style="opacity: 1;" title="" class="medium" src="{{ images[0] }}">
@@ -110,7 +111,7 @@
                                    maxlength="4" onpaste="return false;" type="text">
                             <div>
                                 <span style="margin-left: 10px">目前此商品数量为<span
-                                        style="color: firebrick;font-weight: bolder">{{ product.counts }}</span></span>
+                                        style="color: #E14961;font-weight: bolder">{{ product.counts }}</span></span>
                             </div>
                         </dd>
                     </dl>
@@ -121,7 +122,8 @@
                         </div>
                     {% elif product.is_pass != 2 %}
                         <div class="buy">
-                            <input  class="addCart" value="未上架" style="background: #cccccc;text-align: center;color: #f52222;" type="button">
+                            <input class="addCart" value="未上架"
+                                   style="background: #cccccc;text-align: center;color: #f52222;" type="button">
                         </div>
                     {% else %}
                         <div class="buy">
@@ -132,44 +134,31 @@
             </form>
             <div id="bar" class="bar">
                 <ul>
+                    <li id="loveTab">
+                        <a href="#love">喜欢的人</a>
+                    </li>
+                    <li id="commnetTab">
+                        <a href="#ask">商品询问</a>
+                    </li>
                     <li id="introductionTab">
                         <a href="#introduction">商品描述</a>
                     </li>
-                    <li id="loveTab">
-                        <a href="#love">商品议价</a>
-                    </li>
-                    <li id="commnetTab">
-                        <a href="#love">给卖家留言</a>
-                    </li>
                 </ul>
             </div>
-            <div class="show_love_user_area">
-                <span style="color: firebrick;font-size: 15px">喜欢此商品的会员:</span>
+            <div id="love" class="show_love_user_area">
+                <h3 style="text-align: center">喜欢此商品的会员</h3>
                 <ul class="show_love_user">
                     {% for user in users %}
-                        <li class="{{ user.id }}"><img src="{{ user.img_url }}" title="{{ user.username }}"></li>
+                        <div class="{{ user.id }}"><img src="{{ user.img_url }}" title="{{ user.username }}"></div>
                     {% endfor %}
                     {% if users|length == 0 %}
                         <li class="no_like">暂无会员</li>
                     {% endif %}
                 </ul>
             </div>
-            <div id="introduction" name="introduction" class="introduction detail_all">
-                <h3>商品描述</h3>
-                <div class="title">
-                    <strong> {{ product.pDesc }}</strong>
-                </div>
-                <div>
-
-                    {% for image in images %}
-                        <img src="{{ image }}">
-                    {% endfor %}
-
-                </div>
-            </div>
-            <div id="love" name="love" class="love detail_all">
+            <div id="ask" name="love" class="love detail_all">
                 <div class="write_comment_area">
-                    <h3>商品议价提问</h3>
+                    <h3 style="text-align: center">商品议价提问</h3>
                     <textarea class="form-control real_comment" rows="3"
                               placeholder="商议价格还有关于商品的提问在这里发表，语言有不合法或者不符合南工二手交易平台规定，会被删除并且你的账号可能会被查封~"></textarea>
                     <button type="button" class="btn btn-primary comment_send" data-toggle="button" aria-pressed="false"
@@ -236,6 +225,19 @@
                             {% endfor %}
                         </ul>
                     </div>
+
+                </div>
+            </div>
+            <div id="introduction" name="introduction" class="introduction detail_all">
+                <h3 style="text-align: center">商品描述</h3>
+                <div class="title">
+                    <strong> {{ product.pDesc }}</strong>
+                </div>
+                <div>
+
+                    {% for image in images %}
+                        <img src="{{ image }}">
+                    {% endfor %}
 
                 </div>
             </div>

@@ -1,4 +1,15 @@
 $(function () {
+    $(document).scroll(function () {
+        var scroH = $(document).scrollTop();  //滚动高度
+        var viewH = $(window).height();  //可见高度
+        var contentH = $(document).height();  //内容高度
+
+        if (scroH > 100) {  //距离顶部大于100px时
+            $("#fix").addClass("my_hr")
+        } else {
+            $("#fix").removeClass("my_hr")
+        }
+    })
     total = document.documentElement.clientHeight;
     document.getElementById("main_show_id").style.minHeight = total + "px";
     window.last_Interval
