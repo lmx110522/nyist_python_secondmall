@@ -88,3 +88,17 @@ body {
     background: white;
     border-bottom: 2px solid #F4F4F4;
 }
+
+.flex_col{
+    display: flex;
+    flex-direction: column;
+}
+
+.flex_row{
+    display: flex;
+    flex-direction: row;
+}
+
+.flex_center{
+    align-items: center;
+}

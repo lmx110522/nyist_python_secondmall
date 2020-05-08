@@ -432,6 +432,11 @@ div.container .append23 {
 div.container .last {
 	margin-right: -30px;
 }
+
+.other_area_last {
+    margin-left: 26% !important;
+}
+
 div.container a{
 	color: #666666;
     text-decoration: none;

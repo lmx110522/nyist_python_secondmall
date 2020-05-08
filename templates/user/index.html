@@ -27,7 +27,8 @@
                     {% for product in extend_products %}
                         <div>
                             <a href="{{ url_for('product.detail',id=product["id"]) }}" target="_blank">
-                                <img class="lunbo_img" title="{{ product['pname'] }}" src="{{ product['images'] }}" alt=""/>
+                                <img class="lunbo_img" title="{{ product['pname'] }}" src="{{ product['images'] }}"
+                                     alt=""/>
                             </a>
                         </div>
                     {% endfor %}
@@ -54,6 +55,53 @@
                             {% endfor %}
                         </ul>
                     </div>
+                </div>
+            </div>
+            <div class="user_area  flex_col">
+                <div class="flex_row user_one">
+                    <div class="head_area">
+                        {% if user != null %}
+                            <img class="head_img" src="{{ user.img_url }}">
+                        {% else %}
+                            <a href="{{ url_for('user.login') }}"><img class="head_img" src="{{ url_for('static',filename='img/users.png') }}"></a>
+                        {% endif %}
+                    </div>
+                    <div class="flex_col user_other1">
+                        <div class="name_area user_other2">
+                            {% if user != null %}
+                                <span class="username">{{ user.username }}</span>
+                                <a href="{{ url_for('user.logout') }}">退出</a>
+                            {% else %}
+                                <span class="username">南小工</span>
+                                <a href="{{ url_for('user.login') }}">登录</a>
+                            {% endif %}
+                        </div>
+                        <div class="flex_row user_other">
+                            <div class="flex_row flex_center">
+                                <a href="/user/userInfo?tab=1"><img class="icon_img" src="{{ url_for('static',filename='img/cart.png') }}"></a>
+                                {% if length != 0 %}
+                                    <span>{{ length }}</span>
+                                {% else %}
+                                    <span>0</span>
+                                {% endif %}
+                            </div>
+                            <div class="flex_row flex_center">
+                                <img class="icon_img" src="{{ url_for('static',filename='img/jf.png') }}">
+                                <span>暂未开通</span>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: #3d4444">欢迎来南工二手商城</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <a href="{{ url_for('product.getClassify',cid=2) }}">
+                        <img class="ad_img" src="{{ url_for('static',filename='img/xz.png') }}">
+                    </a>
+                    <a href="{{ url_for('product.getClassify',cid=5) }}">
+                        <img class="ad_img" src="{{ url_for('static',filename='img/addd1.png') }}">
+                    </a>
                 </div>
             </div>
         </div>

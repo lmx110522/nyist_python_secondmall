@@ -42,7 +42,8 @@
         </div>
         <div class="span9">
             <div class="headerAd">
-                <img src="{{ url_for('static',filename='image/r___________renleipic_01/header.jpg') }}" width="320" height="50" alt="正品保障" title="正品保障"/>
+                <img src="{{ url_for('static',filename='image/r___________renleipic_01/header.jpg') }}" width="320"
+                     height="50" alt="正品保障" title="正品保障"/>
             </div>
         </div>
         {% include 'user/menu.html' %}
@@ -110,12 +111,15 @@
     </div>
 </div>
 <div class="easy_nav">
-    <div><a href="{{ url_for('product.getClassify',cid=5) }}" target="_blank">爆品类别</a></div>
-    <div><a href="/user/userInfo?tab=2" target="_blank">我的发布</a></div>
-    <div><a href="/user/userInfo?tab=3" target="_blank">我的订单</a></div>
-    <div><a href="{{ url_for('user.userInfo') }}" target="_blank">个人主页</a></div>
+    <div><a href="{{ url_for('product.getClassify',cid=5) }}">爆品类别</a></div>
+    <div><a href="/user/userInfo?tab=2">我的发布</a></div>
+    <div><a href="/user/userInfo?tab=3">我的订单</a></div>
+    <div><a href="{{ url_for('user.userInfo') }}">个人主页</a></div>
     <div><a href="/user/userInfo?tab=1" target="_blank">购物车<span class="glyphicon glyphicon-shopping-cart"></span></a>
     </div>
+    {% if user != null and 1 == user.identity %}
+        <div><a href="/admin">待我审核</a></div>
+    {% endif %}
 </div>
 </body>
 </html>

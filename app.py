@@ -82,7 +82,7 @@ def index():
     # 最低价商品
     if productList3 is None:
         products = Product.query.filter(Product.is_sell == 1, Product.is_pass == 2, Product.counts != 0).order_by(
-            Product.new_price.asc()).slice(0, 3)
+            Product.new_price.asc()).slice(0, 6)
         productList3 = []
         for product in products:
             product = Product.product_json(product)
@@ -185,6 +185,8 @@ def clear_redis():
 def not_foundPage(error):
     return redirect(url_for('index'))
 
+if __name__ == '__main__':
+    app.run()
 
 scheduler = BackgroundScheduler()
 # 1个小时更新热门商品

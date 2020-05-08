@@ -78,9 +78,12 @@ div.score10 {
     background: url(../images/review.gif) 0px -360px no-repeat;
 }
 
+
+
 /* ---------- HotProductCategory ---------- */
 
 div.hotProductCategory {
+    position: fixed;
     width: 216px;
     padding: 0px 6px;
     margin-bottom: 10px;
@@ -1540,7 +1543,7 @@ h3 {
     text-align: center;
 }
 
-.show_love_user_area .show_love_user{
+.show_love_user_area .show_love_user {
     display: flex;
     flex-direction: row;
     min-height: 50px;
