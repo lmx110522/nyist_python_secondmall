@@ -1,13 +1,15 @@
 $(function () {
     $(document).scroll(function () {
         var scroH = $(document).scrollTop();  //滚动高度
-        var viewH = $(window).height();  //可见高度
-        var contentH = $(document).height();  //内容高度
 
         if (scroH > 100) {  //距离顶部大于100px时
-            $("#fix").addClass("my_hr")
+            $(".header").addClass("my_hr")
+            $(".header").addClass("fix")
+            $(".main_show").addClass("top_pad")
         } else {
-            $("#fix").removeClass("my_hr")
+            $(".header").removeClass("my_hr")
+            $(".header").removeClass("fix")
+            $(".main_show").removeClass("top_pad")
         }
     })
     total = document.documentElement.clientHeight;

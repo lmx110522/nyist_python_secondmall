@@ -17,7 +17,11 @@ body {
     border-bottom: 3px solid #E14961 !important;
 }
 
-#fix {
+.top_pad{
+    padding-top: 125px;
+}
+
+.fix {
     position: fixed;
     z-index: 1000;
     width: 100%;
@@ -26,7 +30,6 @@ body {
 }
 
 .main_show {
-    padding-top: 125px;
     background: #FFFFFF;
     width: 60% !important;
     height: 90%;
