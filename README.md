@@ -29,7 +29,7 @@
 ### 新增加管理员审核页面 2020/02/26
 <img src="https://img-blog.csdnimg.cn/20200226122444724.png" alt="关于我们">
 
-<img src="https://img-blog.csdnimg.cn/20200226122603190.png" alt="关于我们">
+<img src="https://img-blog.csdnimg.cn/20200510142607356.png" alt="关于我们">
 
 ### 用户在没有登录的时候点击买东西，会弹出首先登录，同时也可以选择注册
 <img src="https://img-blog.csdnimg.cn/20200505154505498.png" alt="关于我们">
@@ -42,7 +42,7 @@
 <img src="https://img-blog.csdnimg.cn/20181110203102771.gif" alt="加入购物车">
 
 ### 加入购物车之后，用户可以去个人中心查看(顺便展示一下更换照片的界面)
-<img src="https://img-blog.csdnimg.cn/20181110203547493.png" alt="个人中心">
+<img src="https://img-blog.csdnimg.cn/20200510143211156.png" alt="个人中心">
 
 ### 这个时候商品已经在你的购物车内，你在个人中心也可以看到购物车并且去结算
 <img src="https://img-blog.csdnimg.cn/20181110203756381.png" alt="结算">
