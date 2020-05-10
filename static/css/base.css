@@ -19,6 +19,8 @@ body {
 
 .top_pad{
     padding-top: 125px;
+    transition-property: padding-top;
+    transition-duration: 1000ms;
 }
 
 .fix {
