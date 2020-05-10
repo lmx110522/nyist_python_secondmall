@@ -34,7 +34,7 @@
 <img src="https://img-blog.csdnimg.cn/20200505154505498.png" alt="关于我们">
 
 ### 卖东西的界面使用了可以拖拽的方式让用户上传商品更方便
-<img src="hg" alt="关于我们">
+<img src="https://img-blog.csdnimg.cn/20181110202928861.png" alt="关于我们">
 
 ### 用户添加商品到购物车的界面，由于二手商品数量每件比较少，所以限定用户在提交到购物车20分钟内完成结算，否则商品会从购物车内清除
 <img src="https://img-blog.csdnimg.cn/20200505154551439.png" alt="关于我们">
