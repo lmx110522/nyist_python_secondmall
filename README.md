@@ -23,7 +23,7 @@
 
 ### 优化界面 2020/05/08
 <img src="https://img-blog.csdnimg.cn/20200508182506766.jpg" alt="关于我们">
-<img src="https://img-blog.csdnimg.cn/20200505120430116.png" alt="关于我们">
+<img src="https://img-blog.csdnimg.cn/202005101416593.png" alt="关于我们">
 
 ### 新增加管理员审核页面 2020/02/26
 <img src="https://img-blog.csdnimg.cn/20200226122444724.png" alt="关于我们">
