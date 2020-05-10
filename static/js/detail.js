@@ -1,4 +1,37 @@
 $(function () {
+    $("#wrapper .close_btn").click(function () {
+        $("#wrapper").hide(500)
+    })
+
+    $("#wrapper").mouseenter(function () {
+        $('body').addClass('pon');
+    })
+
+    $("#wrapper").mouseleave(function () {
+        $('body').removeClass('pon');
+        $("#wrapper").hide(500)
+    })
+
+
+    $(".user_img_btn").click(function () {
+        $(".product_list").empty()
+        id = $(this).attr("id")
+        var append_html = ""
+        $.getJSON("/user/post_product", "uid=" + id, function (result) {
+            $(".post_num").text(result.length)
+            for (var i = 0; i < result.length; i++) {
+                let product = result[i]
+                append_html = append_html + "<div class=\"product_item flex_col\">\n" +
+                    "                <img src=\"" + product["head_img"] + "\">\n" +
+                    "                <span class=\"name\"><a href='/product/detail?id=" + product["id"] + "'>" + product["pname"] + "</a></span>\n" +
+                    "                <span class=\"price\"><strong>￥" + product["new_price"] + "元</strong></span>\n" +
+                    "            </div>"
+            }
+            $(".product_list").append(append_html)
+        })
+        $("#wrapper").show()
+    })
+
     $('.span18 ').flyto({
         item: '.medium',
         target: '.cart',
@@ -99,7 +132,7 @@ $(function () {
 
             }
         } else {
-           zlalert.alertInfo("内容不能为空且大于5个字")
+            zlalert.alertInfo("内容不能为空且大于5个字")
         }
 
     })

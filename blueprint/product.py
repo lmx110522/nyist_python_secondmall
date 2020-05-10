@@ -2,10 +2,11 @@ import base64
 import uuid
 
 from flask import Blueprint, request, render_template, redirect, url_for, session, jsonify
-from redis_cache import redis_cache
+
 from config import QINIU_URL
 from extend import *
 from pojo import *
+from redis_cache import redis_cache
 
 product_dp = Blueprint("product", __name__, url_prefix="/product", template_folder="../templates/product")
 
@@ -31,9 +32,10 @@ def detail():
                     is_love = 1
                 users.append(user)
     categorys = Category.query.all()
+    postUser = User.query.get(product.uid)
     comments = Comment.query.filter(Comment.pid == pid).order_by(Comment.cdate.desc()).all()
     return render_template("detail.html", product=product, categorys=categorys, users=users, is_love=is_love,
-                           comments=comments, images=images)
+                           comments=comments, images=images, postUser=postUser)
 
 
 @product_dp.route("/do_myLove")
@@ -115,7 +117,7 @@ def add_product():
             img_url = QINIU_URL + filename
             if i == 0:
                 head_img = img_url
-            i = i+1
+            i = i + 1
             img_urls += (img_url + "@")
 
     pname = request.form.get("pname")
@@ -248,8 +250,8 @@ def passItem():
     products = Product.query.filter(Product.id == id).first()
     products.is_pass = 2
     db.session.commit()
-    redis_cache.delete("productList");
-    redis_cache.delete("productList1");
+    redis_cache.delete("productList1")
+    redis_cache.delete("productList3")
     return jsonify({"error": '0'})
 
     return jsonify({"error": "1"})

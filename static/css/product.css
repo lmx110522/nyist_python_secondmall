@@ -79,7 +79,6 @@ div.score10 {
 }
 
 
-
 /* ---------- HotProductCategory ---------- */
 
 div.hotProductCategory {
@@ -1693,3 +1692,115 @@ div.container .pagination .last {
     margin-bottom: 0px;
 }
 
+.post_user img {
+    cursor: pointer;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.love_dot {
+    align-items: center;
+}
+
+.post_user {
+    margin: 5px 0px;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    /*初始状态 透明度为0*/
+    40% {
+        opacity: 0;
+    }
+    /*过渡状态 透明度为0*/
+    100% {
+        opacity: 1;
+    }
+    /*结束状态 透明度为1*/
+}
+
+@-webkit-keyframes fade-in { /*针对webkit内核*/
+    0% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#wrapper {
+    animation: fade-in; /*动画名称*/
+    animation-duration: 1.0s; /*动画持续时间*/
+    -webkit-animation: fade-in 1.0s; /*针对webkit内核*/
+}
+
+.post_list {
+    display: none;
+    border-radius: 30px;
+    font-weight: bolder;
+    width: 335px;
+    min-height: 200px;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    padding: 10px 20px;
+    background: #f4f4f4;
+    z-index: 10000;
+    overflow: auto;
+    max-height: 100%;
+}
+
+.product_item {
+    width: 300px;
+    justify-content: center;
+    text-align: center;
+}
+
+.product_item .price {
+    color: #E14961;
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+.product_item img {
+    border: 3px solid #e4e4e4;
+    width: 280px;
+}
+
+.product_item .name {
+    margin: 5px;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.product_item a:hover {
+    color: #E14961;
+}
+
+.product_list {
+    flex-wrap: wrap;
+
+}
+
+#wrapper .close_btn {
+    cursor: pointer;
+    float: right;
+    background: #f0f0f0;
+    color: #656262;
+    font-size: 10px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+body.pon {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}

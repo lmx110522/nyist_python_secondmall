@@ -836,7 +836,7 @@ ul.product_msg1 li:last-child {
 
 .recommed_area .price {
     line-height: 30px;
-    color:  #E14961;
+    color: #E14961;
     font-size: 14px;
     font-weight: bold;
 }
@@ -900,6 +900,10 @@ ul.product_msg1 li:last-child {
     width: 100%;
 }
 
+.in_li a:hover {
+    color: #E14961;
+}
+
 .user_other {
     align-items: center;
     width: 100%;
@@ -933,3 +937,5 @@ ul.product_msg1 li:last-child {
     -moz-border-radius: 2em;
     border-radius: 2em;
 }
+
+body.pon{width:100%;height:100%;overflow: hidden;}

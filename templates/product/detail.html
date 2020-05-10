@@ -57,23 +57,33 @@
             <div class="name">{{ product.pname }}</div>
 
             <div class="sn">
-                <div>浏览量：{{ product.click_count }} 次</div>
-                <div>
-                    喜欢：<span class="love_nums" style="color: red">{{ users|length }}</span> 人
+                <div><strong>浏览量：</strong>{{ product.click_count }} 次</div>
+                <div class="flex_row love_dot">
+                    <strong>喜欢：</strong>
+                    <span class="love_nums" style="color: red">{{ users|length }}</span> 人
                     {% if  is_love == 1 %}
                         <span class="glyphicon glyphicon-heart myLove do_myLove" title="不喜欢"></span>
                     {% else %}
-                        <span class="glyphicon glyphicon-heart myLove" title="喜欢"></span>
+                        <span style="margin-left: 5px" class="glyphicon glyphicon-heart myLove" title="喜欢"></span>
                     {% endif %}
+                </div>
+                <div class="post_user">
+                    <strong>卖家：</strong><img id="{{ postUser.id }}" class="user_img_btn" title="点我看Ta在售商品" src="{{ postUser.img_url }}">
                 </div>
             </div>
             <div class="info">
                 <dl>
+                    <dt>新品价:</dt>
+                    <dd>
+                        <strong>
+                            <del>￥{{ product.old_price }}元</del>
+                        </strong>
+                    </dd>
+                </dl>
+                <dl>
                     <dt>南工价:</dt>
                     <dd>
                         <strong>￥{{ product.new_price }}元</strong>
-                        新 品 价：
-                        <del>￥{{ product.old_price }}元</del>
                     </dd>
                 </dl>
                 {% if product.counts == 0 %}
@@ -91,13 +101,6 @@
                         </dd>
                     </dl>
                 {% endif %}
-
-                <dl>
-                    <dt></dt>
-                    <dd>
-                        <span>    </span>
-                    </dd>
-                </dl>
             </div>
             <form action="cart_addCart" method="post" id="cartForm">
                 <input type="hidden" name="pid" value="${pPro.pid}"/>
@@ -234,7 +237,6 @@
                     <strong> {{ product.pDesc }}</strong>
                 </div>
                 <div>
-
                     {% for image in images %}
                         <img src="{{ image }}">
                     {% endfor %}
@@ -249,6 +251,13 @@
         <div class="level-3"></div>
     </div>
 
+    <div id="wrapper" class="post_list">
+        <div class="close_btn">关闭</div>
+        <h3 style="text-align: center">在售商品共有<span class="post_num">0</span>件</h3>
+        <div class="product_list flex_row">
+        </div>
+
+    </div>
 
 
     {% include 'user/login_mt.html' %}

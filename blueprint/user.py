@@ -181,6 +181,17 @@ def changeHeadImage():
         return jsonify({"error": '1'})
 
 
+@user_dp.route("/post_product", methods=['GET'])
+def postProduct():
+    uid = request.args.get("uid")
+    products = Product.query.filter(Product.uid == uid, Product.is_pass == 2, Product.is_sell == 1).all()
+    pd_dicts = []
+    for product in products:
+        pf_dict = {"id": product.id, "pname": product.pname, "head_img": product.head_img, "new_price": product.new_price}
+        pd_dicts.append(pf_dict)
+    return jsonify(pd_dicts)
+
+
 @user_dp.route("/checkPassword", methods=['POST'])
 def checkPassword():
     password = request.form.get('password')
