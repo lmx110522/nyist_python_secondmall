@@ -938,4 +938,57 @@ ul.product_msg1 li:last-child {
     border-radius: 2em;
 }
 
-body.pon{width:100%;height:100%;overflow: hidden;}
+body.pon {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.load-bg {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100000;
+}
+
+.load-bg img {
+    margin: 0 auto;
+    width: 100px;
+    padding-bottom: 10px;
+}
+
+.load-icon {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    top: 30%;
+    left: 0%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.load-icon span {
+    text-align: center;
+    color: white;
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+
+@-webkit-keyframes rotation{
+from {-webkit-transform: rotate(0deg);}
+to {-webkit-transform: rotate(360deg);}
+}
+
+.imgRotate{
+-webkit-transform: rotate(360deg);
+animation: rotation 1.5s linear infinite;
+-moz-animation: rotation 1.5s linear infinite;
+-webkit-animation: rotation 1.5s linear infinite;
+-o-animation: rotation 1.5s linear infinite;
+}

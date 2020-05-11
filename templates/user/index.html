@@ -20,6 +20,12 @@
 {% endblock %}
 
 {% block main %}
+    <div class="load-bg">
+        <div class="load-icon">
+            <img class="imgRotate" src="{{ url_for('static',filename='img/loading.png') }}">
+            <span>商品发布中，请耐心等候...</span>
+        </div>
+    </div>
     <div class="container index">
         <div class="top_area">
             <div class="lunbo">
@@ -397,8 +403,6 @@
         </div>
     </div>
     </div>
-
-
     {% include 'user/login_mt.html' %}
     {#    # 小火箭#}
     <div style="display: none;" id="rocket-to-top">
