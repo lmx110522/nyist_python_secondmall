@@ -8,6 +8,9 @@
 
 <p align="center"><a href="https://blog.csdn.net/over110522/article/details/83933039">csdn地址</a></p>
 
+[![GitHub stars](https://img.shields.io/github/stars/lmx110522/nyist_python_secondmall.svg?style=social&label=Star&)](https://github.com/lmx110522/nyist_python_secondmall/stargazers)
+ [![GitHub forks](https://img.shields.io/github/forks/lmx110522/nyist_python_secondmall.svg?style=social&label=Fork&)](https://github.com/lmx110522/nyist_python_secondmall/fork)
+ 
 # 使用申明
 - 禁止用来盈利   
 - 前前后后开发2年时间啦 感谢你的支持，麻烦点个star，辛苦
